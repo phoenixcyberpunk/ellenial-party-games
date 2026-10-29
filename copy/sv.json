@@ -65,7 +65,8 @@
     "actThis": "Spela upp det här",
     "rules": "Inget prat, inga ljud.",
     "skip": "Hoppa över",
-    "gotIt": "Rätt"
+    "gotIt": "Rätt",
+    "wellActed": "Snyggt spelat! Vem är nästa?"
   },
   "pannben": {
     "getReady": "Gör dig redo",

@@ -351,9 +351,12 @@
     var g = S.round.game;
     return '<div class="bar center">' + backBtn('setup') + '<span class="bar-title">' + esc(t('games.' + g + '.name')) + '</span><span class="spacer"></span></div>' +
       '<div class="stage yellow" aria-live="polite"><span class="stage-title">' + esc(t('timesUp')) + '</span>' +
-      '<span class="kicker" style="margin-top:20px">' + esc(t('groupSoFar')) + '</span>' +
-      '<span class="total">' + S.groupTotal + '</span>' +
-      '<span class="stage-text" style="font-weight:700">' + esc(t('wordsTogether')) + '</span></div>' +
+      // Charades starts without scores (decided 29 Oct); PANNBEN shows the group's running total.
+      (g === 'charades'
+        ? '<span class="stage-text" style="font-weight:700">' + esc(t('charades.wellActed')) + '</span>'
+        : '<span class="kicker" style="margin-top:20px">' + esc(t('groupSoFar')) + '</span>' +
+          '<span class="total">' + S.groupTotal + '</span>' +
+          '<span class="stage-text" style="font-weight:700">' + esc(t('wordsTogether')) + '</span>') + '</div>' +
       '<p class="center-text">' + esc(t('handOn')) + '</p>' +
       '<div class="bottom" style="margin-top:0"><button type="button" class="btn btn-primary" data-act="nextturn">' + esc(t('nextTurn')) + '</button>' +
       '<button type="button" class="btn btn-secondary" data-act="home">' + esc(t('doneForNow')) + '</button></div>';
@@ -370,7 +373,7 @@
     }
     var c = 2 * Math.PI * 56;
     return '<div class="bar center"><button type="button" class="round-btn" data-act="stopround" aria-label="' + esc(t('pause')) + '">' + I.pause + '</button>' +
-      '<span class="pill">' + esc(t('groupSoFar')) + ': ' + S.groupTotal + '</span></div>' +
+      '<span class="spacer"></span></div>' +
       '<div class="ring"><svg viewBox="0 0 132 132" role="img" aria-label="' + r.left + ' s"><circle class="track" cx="66" cy="66" r="56" fill="none" stroke-width="10"/>' +
       '<circle class="fill" cx="66" cy="66" r="56" fill="none" stroke-width="10" stroke-linecap="round" stroke-dasharray="' + c.toFixed(1) + '" stroke-dashoffset="' + (c * (1 - r.left / r.seconds)).toFixed(1) + '"/></svg>' +
       '<span data-timer>' + fmt(r.left) + '</span></div>' +
@@ -523,7 +526,7 @@
       render();
       startTimer(function () { r.stage = 'end'; endRound(); go({ name: 'charades' }); });
     },
-    chgot: function () { if (Date.now() < S.round.lockUntil) return; S.groupTotal++; buzz(40); nextWord(); render(); },
+    chgot: function () { if (Date.now() < S.round.lockUntil) return; buzz(40); nextWord(); render(); },
     chskip: function () { if (Date.now() < S.round.lockUntil) return; nextWord(); render(); },
     nextturn: function () { var g = S.round.game; newRound(g); go({ name: g }); },
     stopround: toSetup,
