@@ -447,7 +447,13 @@
     });
     h += '</ul></section><p class="help">' + esc(t('packs.playIn')) + '</p>';
     if (p.words.length < 3) h += '<p class="help">' + esc(t('packs.needWords')) + '</p>';
-    h += '<button type="button" class="link-danger" data-act="delpack">' + esc(t('packs.deletePack')) + '</button>';
+    if (S.confirmDel === p.id) {
+      h += '<div class="confirm" role="alert"><p>' + esc(t('packs.confirmDelete', { name: p.name })) + '</p>' +
+        '<div class="btn-row"><button type="button" class="btn btn-secondary" data-act="keeppack">' + esc(t('packs.keep')) + '</button>' +
+        '<button type="button" class="btn btn-primary" data-act="delpack">' + esc(t('packs.yesDelete')) + '</button></div></div>';
+    } else {
+      h += '<button type="button" class="link-danger" data-act="askdel">' + esc(t('packs.deletePack')) + '</button>';
+    }
     return h;
   }
 
@@ -467,7 +473,7 @@
     if (S.focusAdd) { S.focusAdd = false; var a = document.getElementById('newword'); if (a) a.focus(); }
   }
   function go(view) {
-    S.view = view; render();
+    S.view = view; S.confirmDel = null; render();
     try { window.scrollTo(0, 0); } catch (e) {}
     var first = app.querySelector('h1, .bar-title, .stage-title');
     if (first && S.view.name !== 'pannben') { first.setAttribute('tabindex', '-1'); first.focus({ preventScroll: true }); }
@@ -549,9 +555,11 @@
     },
     editpack: function (id) { go({ name: 'pack', id: id }); },
     rmword: function (i) { var p = ownPack(S.view.id); if (!p) return; p.words.splice(Number(i), 1); saveOwn(); render(); },
+    askdel: function () { S.confirmDel = S.view.id; render(); },
+    keeppack: function () { S.confirmDel = null; render(); },
     delpack: function () {
       var p = ownPack(S.view.id); if (!p) return;
-      if (!window.confirm(t('packs.confirmDelete', { name: p.name }))) return;
+      S.confirmDel = null;
       S.own = S.own.filter(function (x) { return x.id !== p.id; }); saveOwn();
       if (S.setup.ownId === p.id) S.setup.ownId = null;
       go({ name: 'packs' });

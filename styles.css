@@ -19,12 +19,13 @@
   --night: #1C2B2A;
   --on-dark: #FFFFFF;
   --on-dark-muted: #D7EBE8;
+  --danger: #C2462E;
   --display: "Fredoka", "Nunito", system-ui, sans-serif;
   --body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #111C1B;
     --card: #1D2B29;
     --ink: #EAF2F0;
@@ -36,8 +37,24 @@
     --teal-soft: #203A37;
     --yellow-soft: #3A3420;
     --night: #0A1211;
+    --danger: #F4A98F;
     color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+    --bg: #111C1B;
+    --card: #1D2B29;
+    --ink: #EAF2F0;
+    --muted: #A9BDB9;
+    --line: #2E403D;
+    --border: #4E6663;
+    --teal: #2A8A84;
+    --teal-dark: #8FD3CC;
+    --teal-soft: #203A37;
+    --yellow-soft: #3A3420;
+    --night: #0A1211;
+    --danger: #F4A98F;
+    color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -234,10 +251,9 @@ section.group { display: flex; flex-direction: column; gap: 10px; }
 .word-list li { display: flex; align-items: center; gap: 2px; background: var(--card); border-radius: 999px; padding: 0 4px 0 14px; min-height: 44px; font-weight: 700; font-size: 15px; }
 .word-list button { width: 36px; height: 36px; border: 0; background: transparent; border-radius: 999px; display: flex; align-items: center; justify-content: center; }
 .word-list button svg { stroke: var(--muted); }
-.link-danger { border: 0; background: transparent; color: var(--clay); font-weight: 700; font-size: 15px; min-height: 44px; text-decoration: underline; align-self: center; }
-@media (prefers-color-scheme: dark) {
-  .link-danger { color: #F4A98F; }
-}
+.link-danger { border: 0; background: transparent; color: var(--danger); font-weight: 700; font-size: 15px; min-height: 44px; text-decoration: underline; align-self: center; }
+.confirm { background: var(--card); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.confirm p { margin: 0; font-weight: 700; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }

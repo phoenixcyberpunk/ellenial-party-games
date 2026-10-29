@@ -99,7 +99,9 @@
     "remove": "Ta bort {w}",
     "playIn": "Funkar i alla tre spelen. I Imposter är paketets namn ledtråden till imposter.",
     "deletePack": "Radera paketet",
-    "confirmDelete": "Radera \"{name}\" och alla dess ord?",
+    "confirmDelete": "Radera \"{name}\" och alla dess ord? Det går inte att ångra.",
+    "keep": "Behåll",
+    "yesDelete": "Radera",
     "needWords": "Lägg till minst 3 ord för att spela med paketet."
   },
   "footer": "Gjort av människor, för människor. Gratis, ingen reklam, inget spåras."
