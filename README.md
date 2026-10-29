@@ -2,6 +2,8 @@
 
 Free party games for families that work offline: **PANNBEN** (the forehead game), **Imposter** and **Charades**. Swedish and English, for players who can read (about 8 and up).
 
+Play at **https://partygames.ellenial.app**
+
 Part of Ellenial: free tools made by people, for people. No account, no ads, nothing tracked.
 
 ## How it works
