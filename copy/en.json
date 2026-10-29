@@ -99,7 +99,9 @@
     "remove": "Remove {w}",
     "playIn": "Works in all three games. In Imposter, the pack name is the imposter's hint.",
     "deletePack": "Delete this pack",
-    "confirmDelete": "Delete \"{name}\" and all its words?",
+    "confirmDelete": "Delete \"{name}\" and all its words? This can't be undone.",
+    "keep": "Keep it",
+    "yesDelete": "Delete",
     "needWords": "Add at least 3 words to play with this pack."
   },
   "footer": "Made by people, for people. Free, no ads, nothing tracked."
