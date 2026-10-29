@@ -1,0 +1,66 @@
+{
+  "draft": true,
+  "note": "UTKAST till startpaket, skrivna av Claude 29 okt 2026. Ellen redigerar och äger dem före en offentlig release.",
+  "packs": [
+    {
+      "id": "animals",
+      "name": "Djur",
+      "games": ["imposter", "charades", "pannben"],
+      "levels": {
+        "easy": ["katt", "hund", "häst", "ko", "elefant", "pingvin", "giraff", "kanin", "groda", "uggla", "fisk", "anka", "lejon", "björn", "orm"],
+        "medium": ["igelkott", "bläckfisk", "känguru", "ekorre", "manet", "hackspett", "flamingo", "krokodil", "älg", "säl", "fjäril", "spindel"],
+        "hard": ["kameleont", "näbbdjur", "narval", "sengångare", "myrslok", "axolotl", "eremitkräfta", "påfågel"]
+      }
+    },
+    {
+      "id": "food",
+      "name": "Mat",
+      "games": ["imposter", "charades", "pannben"],
+      "levels": {
+        "easy": ["pannkaka", "banan", "pizza", "äpple", "glass", "bröd", "ost", "morot", "ägg", "soppa", "tårta", "popcorn", "taco", "mjölk", "jordgubbe"],
+        "medium": ["spaghetti", "köttbullar", "kanelbulle", "gröt", "korv med bröd", "sushi", "våffla", "smoothie", "isglass", "smörgås", "ärtsoppa", "prinsesstårta"],
+        "hard": ["fondue", "avokadotoast", "surdegsbröd", "lasagne", "kalops", "dumplings", "crème brûlée", "pressgurka"]
+      }
+    },
+    {
+      "id": "jobs",
+      "name": "Yrken",
+      "games": ["imposter", "charades", "pannben"],
+      "levels": {
+        "easy": ["lärare", "läkare", "kock", "brandman", "polis", "bonde", "pilot", "tandläkare", "bagare", "busschaufför", "sjuksköterska", "målare", "sångare", "veterinär", "astronaut"],
+        "medium": ["rörmokare", "frisör", "livräddare", "bibliotekarie", "brevbärare", "trollkarl", "fotograf", "trädgårdsmästare", "snickare", "domare", "servitör", "forskare"],
+        "hard": ["arkitekt", "arkeolog", "biodlare", "dirigent", "fyrvaktare", "dockspelare", "översättare", "djurskötare"]
+      }
+    },
+    {
+      "id": "sports",
+      "name": "Sport och lek",
+      "games": ["charades", "pannben"],
+      "levels": {
+        "easy": ["fotboll", "simma", "hopprep", "kurragömma", "cykla", "dansa", "åka skidor", "kull", "gunga", "rutschkana", "springa", "hoppa", "drake", "åka skridskor", "bollek"],
+        "medium": ["tennis", "basket", "yoga", "hoppa hage", "jonglera", "ishockey", "bowling", "karate", "studsmatta", "åka pulka", "ro båt", "golf"],
+        "hard": ["stavhopp", "konstsim", "curling", "fäktning", "surfa", "klättring", "konståkning", "orientering"]
+      }
+    },
+    {
+      "id": "places",
+      "name": "Platser",
+      "games": ["imposter", "pannben"],
+      "levels": {
+        "easy": ["strand", "skola", "skog", "park", "kök", "djurpark", "bondgård", "affär", "bibliotek", "lekplats", "badrum", "trädgård", "sjukhus", "bio", "flygplats"],
+        "medium": ["museum", "camping", "bageri", "tågstation", "slott", "fyr", "simhall", "ö", "berg", "hamn", "cirkus", "mataffär"],
+        "hard": ["vulkan", "rymdstation", "öken", "regnskog", "ubåt", "observatorium", "skärgård", "glaciär"]
+      }
+    },
+    {
+      "id": "traditions",
+      "name": "Svenska traditioner",
+      "games": ["imposter", "charades", "pannben"],
+      "levels": {
+        "easy": ["midsommarstång", "lussekatt", "julgran", "påskägg", "semla", "jultomte", "kräftor", "kanelbulle", "pepparkaka", "fika"],
+        "medium": ["kräftskiva", "luciatåg", "valborgsbrasa", "små grodorna", "Kalle Anka på julafton", "påskkärring", "ostkaka", "julklappsrim"],
+        "hard": ["allemansrätten", "Vasaloppet", "surströmming", "Mårtensgås", "sommarstuga", "Melodifestivalen", "midnattssol", "sportlov"]
+      }
+    }
+  ]
+}
