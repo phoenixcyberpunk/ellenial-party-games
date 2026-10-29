@@ -11,7 +11,7 @@ Part of Ellenial: free tools made by people, for people. No account, no ads, not
 - A plain web app: HTML, CSS and JavaScript with no build step and no frameworks.
 - Open it once, add it to your home screen, and it keeps working with no internet (a service worker caches every file).
 - No server, no database. Names typed for a game are forgotten when it ends. Your own word packs are saved only in that phone's browser storage.
-- Fonts (Fredoka and Nunito, SIL Open Font License) are served from this site, so no font service sees who plays.
+- Same look as Gillefeeling: colours from Ellen's flower logo (cream, indigo, lavender), Fraunces + DM Sans (SIL Open Font License), served from this site so no font service sees who plays.
 
 ## Files
 
@@ -51,4 +51,4 @@ AGPL-3.0-only, the same as the Ellenial site. See `LICENSE`. The fonts in `fonts
 - Product and design: Ellen Nilsson
 - Code: written with Claude
 - Icon: placeholder shapes until a person draws the real one
-- Fonts: Fredoka (The Fredoka Project Authors), Nunito (The Nunito Project Authors), SIL OFL 1.1
+- Fonts: Fraunces (The Fraunces Project Authors), DM Sans (The DM Sans Project Authors), SIL OFL 1.1

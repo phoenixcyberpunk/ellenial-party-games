@@ -1,6 +1,6 @@
 /* Offline support: after the first visit, everything is played from this cache.
    Bump VERSION whenever any file changes, so phones pick up the new one. */
-var VERSION = 'party-v1';
+var VERSION = 'party-v2';
 var FILES = [
   './',
   'index.html',
@@ -11,9 +11,10 @@ var FILES = [
   'copy/sv.json',
   'packs/en.json',
   'packs/sv.json',
-  'fonts/fredoka-latin-600-normal.woff2',
-  'fonts/nunito-latin-400-normal.woff2',
-  'fonts/nunito-latin-700-normal.woff2',
+  'fonts/fraunces-latin-500-normal.woff2',
+  'fonts/dm-sans-latin-400-normal.woff2',
+  'fonts/dm-sans-latin-500-normal.woff2',
+  'fonts/dm-sans-latin-600-normal.woff2',
   'icons/icon.svg',
   'icons/icon-192.png',
   'icons/icon-512.png'
