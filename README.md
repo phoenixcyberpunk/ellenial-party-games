@@ -44,7 +44,7 @@ A static site on Vercel's free tier: close to zero. Stated openly, as all Elleni
 
 ## Licence
 
-AGPL-3.0, the same as the Ellenial site. See `LICENSE`. The fonts in `fonts/` keep their own SIL Open Font License (see the licence files there).
+AGPL-3.0-only, the same as the Ellenial site. See `LICENSE`. The fonts in `fonts/` keep their own SIL Open Font License (see the licence files there).
 
 ## Credits
 
