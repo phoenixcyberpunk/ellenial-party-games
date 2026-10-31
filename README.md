@@ -12,7 +12,7 @@ Part of Ellenial: free tools made by people, for people. No account, no ads, not
 - PANNBEN is always played sideways. iPhone ignores a web page's request to lock landscape, so when the screen stays portrait the play screen rotates itself and follows which way the phone is turned.
 - Open it once, add it to your home screen, and it keeps working with no internet (a service worker caches every file).
 - No server, no database. Names typed for a game are forgotten when it ends. Your own word packs are saved only in that phone's browser storage.
-- Same look as Gillefeeling: colours from Ellen's flower logo (cream, indigo, lavender), Fraunces + DM Sans (SIL Open Font License), served from this site so no font service sees who plays.
+- Same look as Gillefeeling: colours from Ellen's flower logo (cream, indigo, lavender), Fraunces + Instrument Sans (SIL Open Font License), served from this site so no font service sees who plays.
 
 ## Files
 
@@ -52,4 +52,4 @@ AGPL-3.0-only, the same as the Ellenial site. See `LICENSE`. The fonts in `fonts
 - Product and design: Ellen Nilsson
 - Code: written with Claude
 - Icon: placeholder shapes until a person draws the real one
-- Fonts: Fraunces (The Fraunces Project Authors), DM Sans (The DM Sans Project Authors), SIL OFL 1.1
+- Fonts: Fraunces (The Fraunces Project Authors), Instrument Sans (The Instrument Sans Project Authors), SIL OFL 1.1
