@@ -1,6 +1,7 @@
 {
   "draft": true,
   "note": "UTKAST till startpaket, skrivna av Claude 29 okt 2026. Ellen redigerar och äger dem före en offentlig release.",
+  "categories": ["Färger", "Bilmärken", "Frukter", "Drycker", "Pokémon", "Månader", "Snabbmatskedjor", "Hundraser", "Djur på zoo", "Grönsaker", "Glassmaker", "Sporter", "Länder", "Pizzapålägg", "Godis", "Veckodagar", "Planeter", "Instrument", "Skolämnen", "Sällskapsspel", "Leksaker", "Saker i köket", "Bondgårdsdjur", "Djur i havet", "Insekter", "Fåglar", "Blommor", "Fordon", "Yrken", "Klädesplagg", "Frukostmat", "Saker som är runda", "Saker som är gula", "Former", "Kroppsdelar", "Superhjältar", "Sagofigurer", "Bakverk", "Saker på stranden", "Svenska städer", "Väder", "Saker i badrummet", "Möbler", "Siffror från 1 till 10", "Saker som flyger", "Smörgåspålägg", "Bär", "Tecknade figurer", "Träd", "Julmat"],
   "packs": [
     {
       "id": "animals",
