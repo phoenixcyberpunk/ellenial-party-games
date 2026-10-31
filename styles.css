@@ -224,8 +224,20 @@ section.group { display: flex; flex-direction: column; gap: 10px; }
 .pb-got svg { stroke: var(--clay-ink); }
 .pb-hint { font-size: 15px; font-weight: 700; text-align: center; }
 .pb-count { font-family: var(--display); font-weight: 500; font-size: 40vmin; line-height: 1; }
+/* PANNBEN is always played sideways. If the phone keeps the screen portrait (iPhone, or
+   rotation lock on), turn the play screen 90° to match how the phone is held.
+   rot-l = phone's top points left, rot-r = top points right (set from motion in app.js). */
 @media (orientation: portrait) {
-  .pb-hint { display: none; }
+  .pb.rot-l, .pb.rot-r {
+    inset: auto; top: 50%; left: 50%;
+    width: 100vh; height: 100vw;
+    width: 100dvh; height: 100dvw;
+    padding: 16px max(24px, env(safe-area-inset-top), env(safe-area-inset-bottom));
+  }
+  .pb.rot-l { transform: translate(-50%, -50%) rotate(90deg); }
+  .pb.rot-r { transform: translate(-50%, -50%) rotate(-90deg); }
+  .pb-word { font-size: clamp(48px, 13vmax, 150px); }
+  .pb-count { font-size: 40vmax; }
 }
 
 /* Own packs */

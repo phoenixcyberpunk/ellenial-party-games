@@ -18,6 +18,7 @@
   var GAMES = ['pannben', 'imposter', 'charades'];
 
   var S = {
+    pbRot: 'l', // PANNBEN: which way the phone is turned sideways (see setRot)
     lang: store.get('ep.lang', null) || ((navigator.language || 'en').toLowerCase().indexOf('sv') === 0 ? 'sv' : 'en'),
     copy: {},
     packs: {},
@@ -173,11 +174,27 @@
   // Tilting the screen towards the floor or the ceiling brings |gamma| towards 0;
   // |beta| tells which way: near 180 = screen facing the floor (correct), near 0 = facing up (pass).
   var tilt = { armed: false, seen: false };
+  // Which way the phone is turned sideways. iPhone ignores orientation lock for web pages,
+  // so when the screen stays portrait the play screen is rotated by CSS instead (.rot-l / .rot-r).
+  // zx = how far the phone's right edge points up (+1) or down (-1); continuous through the
+  // gamma/beta flip that happens when the screen passes vertical on the forehead.
+  function setRot(e) {
+    var d = Math.PI / 180;
+    var zx = -Math.sin(e.gamma * d) * Math.cos(e.beta * d);
+    if (Math.abs(zx) < 0.8) return; // only decide while the phone is clearly sideways
+    var side = zx > 0 ? 'l' : 'r';
+    if (side === S.pbRot) return;
+    S.pbRot = side;
+    var el = app.querySelector('.pb');
+    if (el) { el.classList.remove('rot-l', 'rot-r'); el.classList.add('rot-' + side); }
+  }
   function onOrient(e) {
     if (e.gamma === null || e.beta === null) return;
     tilt.seen = true;
     var r = S.round;
-    if (!r || r.game !== 'pannben' || r.stage !== 'play') return;
+    if (!r || r.game !== 'pannben' || (r.stage !== 'play' && r.stage !== 'count')) return;
+    setRot(e);
+    if (r.stage !== 'play') return;
     var g = Math.abs(e.gamma), b = Math.abs(e.beta);
     if (g > 65) { tilt.armed = true; return; }
     if (!tilt.armed || g > 35 || Date.now() < r.lockUntil) return;
@@ -397,11 +414,11 @@
         '<button type="button" class="btn btn-primary" data-act="pbgo">' + esc(t('start')) + '</button>';
     }
     if (r.stage === 'count') {
-      return '<div class="pb"><div class="pb-mid"><span class="pb-count" aria-live="assertive">' + r.count + '</span></div></div>';
+      return '<div class="pb rot-' + S.pbRot + '"><div class="pb-mid"><span class="pb-count" aria-live="assertive">' + r.count + '</span></div></div>';
     }
     var flash = r.flash ? ' ' + r.flash : '';
     var label = r.flash === 'ok' ? t('pannben.correct') : r.flash === 'skip' ? t('pannben.passed') : r.item.word;
-    return '<div class="pb' + flash + '">' +
+    return '<div class="pb rot-' + S.pbRot + flash + '">' +
       '<div class="pb-top"><button type="button" class="round-btn" data-act="stopround" aria-label="' + esc(t('pause')) + '">' + I.pause + '</button>' +
       '<span class="pb-badge">' + esc(t('groupSoFar')) + ': ' + S.groupTotal + '</span>' +
       '<span class="pb-time" data-timer>' + fmt(r.left) + '</span></div>' +
