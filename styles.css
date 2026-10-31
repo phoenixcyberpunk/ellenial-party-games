@@ -1,9 +1,9 @@
 /* Same look as Gillefeeling (its tokens.css): colours from Ellen's flower logo,
-   cream paper, indigo accent, lavender tints; Fraunces + DM Sans, served from this site. */
+   cream paper, indigo accent, lavender tints; Fraunces + Instrument Sans, served from this site. */
 @font-face { font-family: "Fraunces"; src: url("fonts/fraunces-latin-500-normal.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
-@font-face { font-family: "DM Sans"; src: url("fonts/dm-sans-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
-@font-face { font-family: "DM Sans"; src: url("fonts/dm-sans-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
-@font-face { font-family: "DM Sans"; src: url("fonts/dm-sans-latin-600-normal.woff2") format("woff2"); font-weight: 600 800; font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("fonts/instrument-sans-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("fonts/instrument-sans-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Instrument Sans"; src: url("fonts/instrument-sans-latin-600-normal.woff2") format("woff2"); font-weight: 600 800; font-display: swap; }
 
 :root {
   --bg: #FEF2E2;
@@ -28,7 +28,7 @@
   --tile-c: #F2D6C4;
   --danger: #A2433B;
   --display: "Fraunces", Georgia, "Times New Roman", serif;
-  --body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
