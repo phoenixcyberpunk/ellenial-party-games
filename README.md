@@ -1,6 +1,6 @@
 # Ellenial Party games (family version)
 
-Free party games for families that work offline: **PANNBEN** (the forehead game), **Imposter** and **Charades**. Swedish and English, for players who can read (about 8 and up).
+Free party games for families that work offline: **PANNBEN** (the forehead game), **Imposter**, **Charades** and **Don't say the same thing**. Swedish and English, for players who can read (about 8 and up).
 
 Play at **https://partygames.ellenial.app**
 
@@ -10,6 +10,7 @@ Part of Ellenial: free tools made by people, for people. No account, no ads, not
 
 - A plain web app: HTML, CSS and JavaScript with no build step and no frameworks.
 - PANNBEN is always played sideways. iPhone ignores a web page's request to lock landscape, so when the screen stays portrait the play screen rotates itself and follows which way the phone is turned.
+- Don't say the same thing is for two players on one screen, made to look good on a TV or laptop too. A category counts down from 3, both say something from it at once; saying the same thing is a point, fewer is better. A round is 10 categories. "Keep going" continues the same shuffled order (no repeats); "New players" shuffles the categories again. Keyboard: Enter starts, ← same, → different.
 - Open it once, add it to your home screen, and it keeps working with no internet (a service worker caches every file).
 - No server, no database. Names typed for a game are forgotten when it ends. Your own word packs are saved only in that phone's browser storage.
 - Same look as Gillefeeling: colours from Ellen's flower logo (cream, indigo, lavender), Fraunces + Instrument Sans (SIL Open Font License), served from this site so no font service sees who plays.
@@ -33,7 +34,7 @@ Each pack lists which games it works in and has easy, medium and hard words:
   "levels": { "easy": ["cat"], "medium": ["hedgehog"], "hard": ["axolotl"] } }
 ```
 
-In Imposter, the pack name is the hint the imposter sees. The current packs are **drafts** and will be edited before the first public release.
+In Imposter, the pack name is the hint the imposter sees. Each pack file also has a `categories` list used by Don't say the same thing. The current packs are **drafts** and will be edited before the first public release.
 
 ## Run it locally
 

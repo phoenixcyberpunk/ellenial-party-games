@@ -15,7 +15,7 @@
   };
 
   var LANGS = ['sv', 'en'];
-  var GAMES = ['pannben', 'imposter', 'charades'];
+  var GAMES = ['pannben', 'imposter', 'charades', 'samething'];
 
   var S = {
     pbRot: 'l', // PANNBEN: which way the phone is turned sideways (see setRot)
@@ -30,6 +30,8 @@
     round: null,
     groupTotal: 0,
     motion: 'unknown', // 'on' | 'off' | 'unknown'
+    st: null,          // Don't say the same thing: the game in progress
+    stDeck: { lang: '', order: [], pos: 0 },
     focusAdd: false
   };
   if (LANGS.indexOf(S.lang) < 0) S.lang = 'en';
@@ -74,6 +76,7 @@
       pannben: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="14" r="7"/><rect x="8" y="2.5" width="8" height="6" rx="1.5"/><path d="M9.5 15.5c.8.8 1.6 1.1 2.5 1.1s1.7-.3 2.5-1.1"/></svg>',
       imposter: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/><path d="M8.6 8.8a2 2 0 1 1 2.6 1.9c-.5.2-.7.6-.7 1.1"/><path d="M10.5 13.6h.01"/></svg>',
       charades: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2"/><path d="M12 7.5v7"/><path d="M12 9.5l-5-3"/><path d="M12 9.5l4.5-4"/><path d="M12 14.5l-3.5 6"/><path d="M12 14.5l3.5 6"/></svg>',
+      samething: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3h6A2.5 2.5 0 0 1 14 5.5v3A2.5 2.5 0 0 1 11.5 11H7l-3 2.5V11a2.5 2.5 0 0 1-1-2z"/><path d="M21 13.5a2.5 2.5 0 0 0-2.5-2.5h-6a2.5 2.5 0 0 0-2.5 2.5v3a2.5 2.5 0 0 0 2.5 2.5H17l3 2.5V19a2.5 2.5 0 0 0 1-2z"/></svg>',
       packs: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="12" height="15" rx="2"/><path d="M8 3h10a2 2 0 0 1 2 2v13"/><path d="M8 11h4"/><path d="M8 15h4"/></svg>'
     }
   };
@@ -206,7 +209,7 @@
     if (on) { tilt.armed = false; window.addEventListener('deviceorientation', onOrient); }
   }
 
-  function goFull(on) {
+  function goFull(on, noLock) {
     try {
       if (on) {
         var el = document.documentElement;
@@ -214,6 +217,7 @@
         if (req && !document.fullscreenElement) {
           var p = req.call(el);
           if (p && p.then) p.then(function () {
+            if (noLock) return;
             if (screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(function () {});
           }).catch(function () {});
         }
@@ -226,6 +230,7 @@
   function endRound() {
     stopTimer(); keepAwake(false); listenTilt(false);
     if (S.round && S.round.game === 'pannben') goFull(false);
+    stEnd();
   }
 
   // ---------- Views ----------
@@ -440,6 +445,126 @@
     }, 650);
   }
 
+  // ----- Don't say the same thing -----
+  // Two players, one (big) screen. A category counts down from 3; on zero both say something
+  // from it. Same answer = one point for the pair, and fewer points is better.
+  // Categories come from packs/<lang>.json "categories", shuffled for every new pair of players.
+  var ST_ROUND = 10; // categories per round
+  var stTimer = null;
+  function stClear() { if (stTimer) { clearTimeout(stTimer); stTimer = null; } }
+  function stEnd() {
+    stClear();
+    if (S.st) { keepAwake(false); goFull(false); S.st = null; }
+  }
+  function stCats() { return (S.packs[S.lang] && S.packs[S.lang].categories) || []; }
+  function stShuffle() {
+    var n = stCats().length, order = [];
+    for (var i = 0; i < n; i++) order.push(i);
+    S.stDeck = { lang: S.lang, order: shuffle(order), pos: 0 };
+  }
+  function stNextCat() {
+    var d = S.stDeck;
+    if (d.lang !== S.lang || d.pos >= d.order.length) stShuffle();
+    d = S.stDeck;
+    return d.order[d.pos++];
+  }
+  function stNew(newPlayers) {
+    if (newPlayers || !S.st) stShuffle();
+    stClear();
+    // Same players keep drawing from the same shuffled order, so categories don't repeat.
+    S.st = { stage: 'ready', ready: [false, false], points: 0, i: 0, cat: -1, count: 3, flash: '' };
+  }
+  function stCount() {
+    var m = S.st;
+    m.cat = stNextCat(); m.i++; m.count = 3; m.flash = ''; m.stage = 'count';
+    render();
+    stTick();
+  }
+  function stTick() {
+    stClear();
+    stTimer = setTimeout(function () {
+      var m = S.st; if (!m || m.stage !== 'count') return;
+      m.count--;
+      if (m.count <= 0) { m.stage = 'say'; buzz(80); }
+      render();
+      if (m.stage === 'count') stTick();
+    }, 1000);
+  }
+  function stAnswer(same) {
+    var m = S.st;
+    if (!m || m.stage !== 'say' || m.flash) return;
+    if (same) { m.points++; buzz([30, 40, 30]); }
+    m.flash = same ? 'same' : 'diff';
+    render();
+    stClear();
+    stTimer = setTimeout(function () {
+      if (S.st !== m) return;
+      if (m.i >= ST_ROUND) { m.stage = 'end'; m.flash = ''; keepAwake(false); render(); }
+      else stCount();
+    }, same ? 1100 : 600);
+  }
+  function stReady(who) {
+    var m = S.st; if (!m || m.stage !== 'ready') return;
+    if (who === 'both') { m.ready = [true, true]; } else { m.ready[Number(who)] = true; }
+    render();
+    if (m.ready[0] && m.ready[1]) {
+      goFull(true, true); keepAwake(true);
+      stClear();
+      stTimer = setTimeout(function () { if (S.st === m && m.stage === 'ready') stCount(); }, 450);
+    }
+  }
+  function viewSameThing() {
+    var m = S.st;
+    var top = function (left) {
+      return '<div class="st-top">' + left +
+        (m.stage === 'ready' ? '<span class="spacer"></span>' : '<span class="st-badge">' + esc(t('samething.catOf', { i: m.i, n: ST_ROUND })) + '</span>') +
+        '<span class="st-badge st-pts">' + esc(t('samething.points', { n: m.points })) + '</span></div>';
+    };
+    var h = '<div class="st' + (m.flash ? ' ' + m.flash : '') + '">';
+    if (m.stage === 'ready') {
+      h += top(backBtn('home')) +
+        '<div class="st-mid"><span class="st-title">' + esc(t('games.samething.name')) + '</span>' +
+        '<span class="st-ask">' + esc(t('samething.ready')) + '</span>' +
+        '<span class="st-how">' + esc(t('samething.how')) + '</span></div>' +
+        '<div class="st-buttons">';
+      [0, 1].forEach(function (p) {
+        var on = m.ready[p];
+        h += '<button type="button" class="st-ready' + (on ? ' on' : '') + '" data-act="stready" data-arg="' + p + '" aria-pressed="' + on + '">' +
+          '<span class="st-who">' + esc(t('samething.p' + (p + 1))) + '</span>' +
+          '<span>' + esc(on ? t('samething.isReady') : t('samething.imReady')) + '</span></button>';
+      });
+      h += '</div><p class="st-keys kb">' + esc(t('samething.keysHint')) + '</p>';
+    } else if (m.stage === 'end') {
+      var msg = m.points === 0 ? 'msg0' : m.points <= 3 ? 'msgFew' : 'msgMany';
+      h += top('<button type="button" class="round-btn" data-act="home" aria-label="' + esc(t('done')) + '">' + I.x + '</button>') +
+        '<div class="st-mid" aria-live="polite"><span class="st-ask">' + esc(t('samething.roundOver')) + '</span>' +
+        '<span class="st-total">' + m.points + '</span>' +
+        '<span class="st-how" style="font-weight:700">' + esc(t('samething.pointsLabel')) + ' · ' + esc(t('samething.fewerBetter')) + '</span>' +
+        '<span class="st-how">' + esc(t('samething.' + msg)) + '</span></div>' +
+        '<div class="st-buttons"><button type="button" class="st-big st-neutral" data-act="stnewp">' + esc(t('samething.newPlayers')) + '</button>' +
+        '<button type="button" class="st-big st-go" data-act="stagain">' + esc(t('samething.again')) + '</button></div>' +
+        '<p class="st-keys">' + esc(t('samething.againHelp')) + '</p>';
+    } else {
+      var saying = m.stage === 'say';
+      var cat = stCats()[m.cat] || '—';
+      var under = m.flash === 'same' ? t('samething.flashSame') : m.flash === 'diff' ? t('samething.flashDiff') : saying ? t('samething.sayIt') : String(m.count);
+      h += top('<button type="button" class="round-btn" data-act="home" aria-label="' + esc(t('pause')) + '">' + I.pause + '</button>') +
+        '<div class="st-mid"><span class="st-cat">' + esc(cat) + '</span>' +
+        '<span class="' + (m.flash ? 'st-say st-flash' : saying ? 'st-say' : 'st-count') + '" aria-live="assertive">' + esc(under) + '</span></div>' +
+        '<div class="st-buttons"><button type="button" class="st-big st-same" data-act="stsame"' + (saying && !m.flash ? '' : ' disabled') + '>' + esc(t('samething.same')) + '</button>' +
+        '<button type="button" class="st-big st-diff" data-act="stdiff"' + (saying && !m.flash ? '' : ' disabled') + '>' + esc(t('samething.different')) + '</button></div>';
+    }
+    return h + '</div>';
+  }
+  document.addEventListener('keydown', function (e) {
+    if (S.view.name !== 'samething' || !S.st || e.metaKey || e.ctrlKey || e.altKey) return;
+    var m = S.st, k = e.key;
+    if (m.stage === 'ready' && (k === 'Enter' || k === ' ')) { e.preventDefault(); stReady('both'); }
+    else if (m.stage === 'say' && k === 'ArrowLeft') { e.preventDefault(); stAnswer(true); }
+    else if (m.stage === 'say' && k === 'ArrowRight') { e.preventDefault(); stAnswer(false); }
+    else if (m.stage === 'end' && k === 'Enter') { e.preventDefault(); actions.stagain(); }
+  });
+
   // ----- Own packs -----
   function viewPacks() {
     var h = '<div class="bar">' + backBtn('home') + '<h1 class="bar-title">' + esc(t('packs.title')) + '</h1></div>' +
@@ -486,6 +611,7 @@
     else if (v === 'imposter') html = viewImposter();
     else if (v === 'charades') html = viewCharades();
     else if (v === 'pannben') html = viewPannben();
+    else if (v === 'samething' && S.st) html = viewSameThing();
     else if (v === 'packs') html = viewPacks();
     else if (v === 'pack') html = viewPack();
     else html = viewHome();
@@ -496,7 +622,7 @@
     S.view = view; S.confirmDel = null; render();
     try { window.scrollTo(0, 0); } catch (e) {}
     var first = app.querySelector('h1, .bar-title, .stage-title');
-    if (first && S.view.name !== 'pannben') { first.setAttribute('tabindex', '-1'); first.focus({ preventScroll: true }); }
+    if (first && S.view.name !== 'pannben' && S.view.name !== 'samething') { first.setAttribute('tabindex', '-1'); first.focus({ preventScroll: true }); }
   }
   function toSetup() { endRound(); S.round = null; go({ name: 'setup' }); }
 
@@ -508,6 +634,7 @@
     home: function () { endRound(); S.round = null; S.imp = null; go({ name: 'home' }); },
     setup: toSetup,
     open: function (g) {
+      if (g === 'samething') { stNew(true); go({ name: 'samething' }); return; }
       S.setup.game = g;
       var ids = packsFor(g).map(function (p) { return p.id; });
       if (!S.setup.ownId && S.setup.packId !== 'mix' && ids.indexOf(S.setup.packId) < 0) S.setup.packId = ids[0] || 'mix';
@@ -567,6 +694,12 @@
     },
     pbgot: function () { if (Date.now() >= S.round.lockUntil) pbAnswer(true); },
     pbpass: function () { if (Date.now() >= S.round.lockUntil) pbAnswer(false); },
+    // Don't say the same thing
+    stready: function (p) { stReady(p); },
+    stsame: function () { stAnswer(true); },
+    stdiff: function () { stAnswer(false); },
+    stagain: function () { stNew(false); go({ name: 'samething' }); },
+    stnewp: function () { stNew(true); go({ name: 'samething' }); },
     // Own packs
     packs: function () { go({ name: 'packs' }); },
     newpack: function () {

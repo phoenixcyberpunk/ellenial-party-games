@@ -1,6 +1,7 @@
 {
   "draft": true,
   "note": "DRAFT starter packs written by Claude on 29 Oct 2026. Ellen edits and owns these before any public release.",
+  "categories": ["Colours", "Car brands", "Fruit", "Drinks", "Pokémon", "Months", "Fast food chains", "Dog breeds", "Zoo animals", "Vegetables", "Ice cream flavours", "Sports", "Countries", "Pizza toppings", "Sweets", "Days of the week", "Planets", "Musical instruments", "School subjects", "Board games", "Toys", "Things in a kitchen", "Farm animals", "Sea creatures", "Insects", "Birds", "Flowers", "Vehicles", "Jobs", "Clothes", "Breakfast foods", "Things that are round", "Things that are yellow", "Shapes", "Body parts", "Superheroes", "Fairy tale characters", "Desserts", "Things at the beach", "Big cities", "Weather", "Things in a bathroom", "Furniture", "Numbers from 1 to 10", "Things that fly", "Snacks", "Berries", "Cartoon characters", "Trees", "Things that are cold"],
   "packs": [
     {
       "id": "animals",

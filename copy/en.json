@@ -10,7 +10,8 @@
   "games": {
     "pannben": { "name": "PANNBEN", "sub": "the forehead game", "desc": "Phone on your forehead. Friends give clues.", "meta": "2+ players · timed rounds" },
     "imposter": { "name": "Imposter", "sub": "", "desc": "Everyone knows the word. Except one.", "meta": "3–12 players" },
-    "charades": { "name": "Charades", "sub": "", "desc": "Act it out. No talking, no sounds.", "meta": "3+ players · timed rounds" }
+    "charades": { "name": "Charades", "sub": "", "desc": "Act it out. No talking, no sounds.", "meta": "3+ players · timed rounds" },
+    "samething": { "name": "Don't say the same thing", "sub": "", "desc": "A category, a countdown, then you both say something. Don't match!", "meta": "2 players · great on a big screen" }
   },
   "yourPacks": "Your packs",
   "yourPacksDesc": "Make a pack with your own words: inside jokes, family names, holiday themes.",
@@ -104,6 +105,31 @@
     "keep": "Keep it",
     "yesDelete": "Delete",
     "needWords": "Add at least 3 words to play with this pack."
+  },
+  "samething": {
+    "ready": "Ready?",
+    "how": "A category shows up and counts down from 3. On zero, you both say something from it out loud at the same time. Said the same thing? That's a point. Fewer points is better.",
+    "p1": "Player 1",
+    "p2": "Player 2",
+    "imReady": "Ready",
+    "isReady": "Ready!",
+    "keysHint": "On a keyboard: Enter starts, ← same, → different.",
+    "catOf": "Category {i} of {n}",
+    "points": "Points: {n}",
+    "sayIt": "Say it!",
+    "same": "Same thing",
+    "different": "Different",
+    "flashSame": "Same! +1 point",
+    "flashDiff": "Nice!",
+    "roundOver": "Round over",
+    "pointsLabel": "points",
+    "fewerBetter": "Fewer points is better.",
+    "msg0": "Not a single match. Total opposites!",
+    "msgFew": "Only a few matches. Pretty different minds!",
+    "msgMany": "You two think alike. That's kind of sweet.",
+    "again": "Keep going",
+    "newPlayers": "New players",
+    "againHelp": "Keep going: same players, no repeated categories. New players: categories shuffled from the start."
   },
   "footer": "Made by people, for people. Free, no ads, nothing tracked."
 }

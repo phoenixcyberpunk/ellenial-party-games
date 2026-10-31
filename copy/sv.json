@@ -10,7 +10,8 @@
   "games": {
     "pannben": { "name": "PANNBEN", "sub": "pannspelet", "desc": "Telefonen på pannan. Kompisarna ger ledtrådar.", "meta": "2+ spelare · rundor på tid" },
     "imposter": { "name": "Imposter", "sub": "", "desc": "Alla vet ordet. Utom en.", "meta": "3–12 spelare" },
-    "charades": { "name": "Charader", "sub": "", "desc": "Spela upp det. Inget prat, inga ljud.", "meta": "3+ spelare · rundor på tid" }
+    "charades": { "name": "Charader", "sub": "", "desc": "Spela upp det. Inget prat, inga ljud.", "meta": "3+ spelare · rundor på tid" },
+    "samething": { "name": "Säg inte samma sak", "sub": "", "desc": "En kategori, en nedräkning, sen säger ni båda något. Säg inte samma!", "meta": "2 spelare · passar på stor skärm" }
   },
   "yourPacks": "Dina paket",
   "yourPacksDesc": "Gör ett paket med egna ord: interna skämt, namn i familjen, högtidsteman.",
@@ -104,6 +105,31 @@
     "keep": "Behåll",
     "yesDelete": "Radera",
     "needWords": "Lägg till minst 3 ord för att spela med paketet."
+  },
+  "samething": {
+    "ready": "Redo?",
+    "how": "En kategori visas och räknar ner från 3. På noll säger ni båda något ur den högt, samtidigt. Sa ni samma sak? Då blir det ett poäng. Färre poäng är bättre.",
+    "p1": "Spelare 1",
+    "p2": "Spelare 2",
+    "imReady": "Redo",
+    "isReady": "Redo!",
+    "keysHint": "Med tangentbord: Enter startar, ← samma, → olika.",
+    "catOf": "Kategori {i} av {n}",
+    "points": "Poäng: {n}",
+    "sayIt": "Säg det!",
+    "same": "Samma sak",
+    "different": "Olika",
+    "flashSame": "Samma! +1 poäng",
+    "flashDiff": "Snyggt!",
+    "roundOver": "Rundan är slut",
+    "pointsLabel": "poäng",
+    "fewerBetter": "Färre poäng är bättre.",
+    "msg0": "Inte en enda gång samma. Helt olika!",
+    "msgFew": "Bara några gånger samma. Ganska olika hjärnor!",
+    "msgMany": "Ni tänker likadant. Det är ju lite gulligt.",
+    "again": "Kör vidare",
+    "newPlayers": "Nya spelare",
+    "againHelp": "Kör vidare: samma spelare, inga upprepade kategorier. Nya spelare: kategorierna blandas från början."
   },
   "footer": "Gjort av människor, för människor. Gratis, ingen reklam, inget spåras."
 }
