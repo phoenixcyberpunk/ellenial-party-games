@@ -11,6 +11,7 @@ Part of Ellenial: free tools made by people, for people. No account, no ads, not
 - A plain web app: HTML, CSS and JavaScript with no build step and no frameworks.
 - PANNBEN is always played sideways. iPhone ignores a web page's request to lock landscape, so when the screen stays portrait the play screen rotates itself and follows which way the phone is turned.
 - Don't say the same thing is for two players on one screen, made to look good on a TV or laptop too. A category counts down from 3, both say something from it at once; saying the same thing is a point, fewer is better. A round is 10 categories. "Keep going" continues the same shuffled order (no repeats); "New players" shuffles the categories again. Keyboard: Enter starts, ← same, → different.
+- **TV mode** at **tv.ellenial.app** (or any address with `?tv`): opens in a TV's own browser and is played with the remote. Arrows move between buttons, OK presses, Back (also Escape, LG 461, Samsung 10009) leaves. Only shows games that suit one shared screen (now: Don't say the same thing), with one "We're ready!" button instead of two.
 - Open it once, add it to your home screen, and it keeps working with no internet (a service worker caches every file).
 - No server, no database. Names typed for a game are forgotten when it ends. Your own word packs are saved only in that phone's browser storage.
 - Same look as Gillefeeling: colours from Ellen's flower logo (cream, indigo, lavender), Fraunces + Instrument Sans (SIL Open Font License), served from this site so no font service sees who plays.

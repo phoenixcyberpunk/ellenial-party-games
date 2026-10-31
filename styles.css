@@ -283,6 +283,27 @@ section.group { display: flex; flex-direction: column; gap: 10px; }
 .st-keys { margin: 0; text-align: center; font-size: clamp(13px, 1.8vmin, 20px); color: var(--muted); }
 @media (hover: none) { .st-keys.kb { display: none; } } /* keyboard hint only where there is a keyboard-ish device */
 
+/* TV mode (tv.ellenial.app): read from the sofa, steered with a remote. Sizes follow the screen. */
+html.tv button:focus { outline: max(5px, 0.7vmin) solid var(--teal); outline-offset: max(5px, 0.7vmin); }
+html.tv .st-big:focus, html.tv .tvh-card:focus { transform: scale(1.03); }
+html.tv #app { max-width: none; }
+.tvh { display: flex; flex-direction: column; gap: 4vmin; min-height: calc(100vh - 48px); padding: 2vmin 4vmin; }
+.tvh-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 3vmin; }
+.tvh-head h1 { margin: 0; font-family: var(--display); font-weight: 500; font-size: clamp(36px, 8vmin, 110px); line-height: 1.05; }
+.tvh-head p { margin: 1vmin 0 0; color: var(--muted); font-size: clamp(16px, 3vmin, 36px); }
+.tvh-lang { font-size: clamp(15px, 2.6vmin, 30px); min-height: clamp(44px, 7vmin, 80px); padding: 0 3vmin; }
+.tvh-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 60vmin), 1fr)); gap: 3vmin; }
+.tvh-card { text-align: left; border: 0; background: var(--card); color: var(--ink); border-radius: 4vmin; padding: 3vmin; display: flex; gap: 3vmin; align-items: center; transition: transform 0.12s; }
+.tvh-card .game-icon { width: clamp(64px, 14vmin, 180px); height: clamp(64px, 14vmin, 180px); border-radius: 3vmin; }
+.tvh-card .game-icon svg { width: 55%; height: 55%; }
+.tvh-name { font-family: var(--display); font-weight: 500; font-size: clamp(24px, 5vmin, 64px); line-height: 1.1; }
+.tvh-desc { font-size: clamp(15px, 2.8vmin, 32px); color: var(--muted); line-height: 1.35; }
+.tvh-more { margin: 0; color: var(--muted); font-size: clamp(15px, 2.6vmin, 30px); }
+.tvh-foot { margin: auto 0 0; text-align: center; color: var(--muted); font-size: clamp(13px, 2vmin, 24px); }
+.st-buttons:has(.st-one) { grid-template-columns: minmax(0, 1fr); max-width: 700px; }
+.st-big { transition: transform 0.12s; }
+html.tv .st-keys { font-size: clamp(16px, 2.6vmin, 30px); }
+
 /* Own packs */
 .pack-row { width: 100%; text-align: left; border: 0; background: var(--card); color: var(--ink); border-radius: 18px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 60px; }
 .pack-row strong { font-size: 17px; }

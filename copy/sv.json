@@ -131,5 +131,12 @@
     "newPlayers": "Nya spelare",
     "againHelp": "Kör vidare: samma spelare, inga upprepade kategorier. Nya spelare: kategorierna blandas från början."
   },
+  "tv": {
+    "tagline": "På tv:n, spelas med fjärrkontrollen.",
+    "more": "Fler tv-spel är på väg.",
+    "weReady": "Vi är redo!",
+    "remoteHint": "Fjärrkontroll: OK startar · ◀ samma · ▶ olika · Tillbaka går ut",
+    "phoneTip": "Har ni en tv? Öppna tv.ellenial.app i tv:ns webbläsare och spela med fjärrkontrollen."
+  },
   "footer": "Gjort av människor, för människor. Gratis, ingen reklam, inget spåras."
 }
