@@ -6,6 +6,7 @@ var FILES = [
   'index.html',
   'styles.css',
   'app.js',
+  'hatt.js',
   'manifest.webmanifest',
   'copy/en.json',
   'copy/sv.json',
