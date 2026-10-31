@@ -131,5 +131,12 @@
     "newPlayers": "New players",
     "againHelp": "Keep going: same players, no repeated categories. New players: categories shuffled from the start."
   },
+  "tv": {
+    "tagline": "On the TV, played with the remote.",
+    "more": "More TV games are on the way.",
+    "weReady": "We're ready!",
+    "remoteHint": "Remote: OK starts · ◀ same · ▶ different · Back leaves",
+    "phoneTip": "On a TV? Open tv.ellenial.app in the TV's browser and play with the remote."
+  },
   "footer": "Made by people, for people. Free, no ads, nothing tracked."
 }

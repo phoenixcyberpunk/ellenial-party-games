@@ -38,6 +38,11 @@
   if (!Array.isArray(S.own)) S.own = [];
 
   var app = document.getElementById('app');
+  // TV mode: tv.ellenial.app (or ?tv) runs in a TV's own browser, played with the remote:
+  // arrows move between buttons, OK presses, Back leaves. Only games that suit one shared screen.
+  var TV = /^tv\./.test(location.hostname) || /[?&]tv(=|&|$)/.test(location.search);
+  var TV_GAMES = ['samething'];
+  if (TV) document.documentElement.classList.add('tv');
 
   // ---------- Helpers ----------
   function esc(s) {
@@ -234,7 +239,20 @@
   }
 
   // ---------- Views ----------
+  function viewTvHome() {
+    var h = '<div class="tvh"><div class="tvh-head"><div><h1>' + esc(t('appName')) + '</h1><p>' + esc(t('tv.tagline')) + '</p></div>' +
+      '<button type="button" class="chip-btn tvh-lang" data-act="lang" aria-label="' + esc(t('langSwitchLabel')) + '" lang="' + (S.lang === 'sv' ? 'en' : 'sv') + '">' + esc(t('langSwitch')) + '</button></div>' +
+      '<div class="tvh-cards">';
+    TV_GAMES.forEach(function (g, i) {
+      h += '<button type="button" class="tvh-card" data-act="open" data-arg="' + g + '"' + (i === 0 ? ' data-tvfocus' : '') + '>' +
+        '<span class="game-icon gi-' + g + '">' + I.game[g] + '</span>' +
+        '<span class="game-text"><span class="tvh-name">' + esc(t('games.' + g + '.name')) + '</span>' +
+        '<span class="tvh-desc">' + esc(t('games.' + g + '.desc')) + '</span></span></button>';
+    });
+    return h + '</div><p class="tvh-more">' + esc(t('tv.more')) + '</p><p class="tvh-foot">' + esc(t('footer')) + '</p></div>';
+  }
   function viewHome() {
+    if (TV) return viewTvHome();
     var draft = S.packs[S.lang] && S.packs[S.lang].draft;
     var h = '<div class="home-head"><div><h1>' + esc(t('appName')) + '</h1><p>' + esc(t('tagline')) + '</p></div>' +
       '<button type="button" class="chip-btn" data-act="lang" aria-label="' + esc(t('langSwitchLabel')) + '" lang="' + (S.lang === 'sv' ? 'en' : 'sv') + '">' + esc(t('langSwitch')) + '</button></div>';
@@ -527,13 +545,16 @@
         '<span class="st-ask">' + esc(t('samething.ready')) + '</span>' +
         '<span class="st-how">' + esc(t('samething.how')) + '</span></div>' +
         '<div class="st-buttons">';
-      [0, 1].forEach(function (p) {
+      if (TV) {
+        h += '<button type="button" class="st-big st-go st-one" data-act="stready" data-arg="both" data-tvfocus>' + esc(t('tv.weReady')) + '</button>';
+      } else [0, 1].forEach(function (p) {
         var on = m.ready[p];
         h += '<button type="button" class="st-ready' + (on ? ' on' : '') + '" data-act="stready" data-arg="' + p + '" aria-pressed="' + on + '">' +
           '<span class="st-who">' + esc(t('samething.p' + (p + 1))) + '</span>' +
           '<span>' + esc(on ? t('samething.isReady') : t('samething.imReady')) + '</span></button>';
       });
-      h += '</div><p class="st-keys kb">' + esc(t('samething.keysHint')) + '</p>';
+      h += '</div>' + (TV ? '<p class="st-keys">' + esc(t('tv.remoteHint')) + '</p>'
+        : '<p class="st-keys kb">' + esc(t('samething.keysHint')) + '</p><p class="st-keys">' + esc(t('tv.phoneTip')) + '</p>');
     } else if (m.stage === 'end') {
       var msg = m.points === 0 ? 'msg0' : m.points <= 3 ? 'msgFew' : 'msgMany';
       h += top('<button type="button" class="round-btn" data-act="home" aria-label="' + esc(t('done')) + '">' + I.x + '</button>') +
@@ -542,7 +563,7 @@
         '<span class="st-how" style="font-weight:700">' + esc(t('samething.pointsLabel')) + ' · ' + esc(t('samething.fewerBetter')) + '</span>' +
         '<span class="st-how">' + esc(t('samething.' + msg)) + '</span></div>' +
         '<div class="st-buttons"><button type="button" class="st-big st-neutral" data-act="stnewp">' + esc(t('samething.newPlayers')) + '</button>' +
-        '<button type="button" class="st-big st-go" data-act="stagain">' + esc(t('samething.again')) + '</button></div>' +
+        '<button type="button" class="st-big st-go" data-act="stagain" data-tvfocus>' + esc(t('samething.again')) + '</button></div>' +
         '<p class="st-keys">' + esc(t('samething.againHelp')) + '</p>';
     } else {
       var saying = m.stage === 'say';
@@ -559,10 +580,52 @@
   document.addEventListener('keydown', function (e) {
     if (S.view.name !== 'samething' || !S.st || e.metaKey || e.ctrlKey || e.altKey) return;
     var m = S.st, k = e.key;
+    var onButton = document.activeElement && document.activeElement.tagName === 'BUTTON' && app.contains(document.activeElement);
+    if ((k === 'Enter' || k === ' ') && onButton) return; // the focused button presses itself
+    if (TV && m.stage === 'count' && k.indexOf('Arrow') === 0) { e.preventDefault(); return; }
     if (m.stage === 'ready' && (k === 'Enter' || k === ' ')) { e.preventDefault(); stReady('both'); }
     else if (m.stage === 'say' && k === 'ArrowLeft') { e.preventDefault(); stAnswer(true); }
     else if (m.stage === 'say' && k === 'ArrowRight') { e.preventDefault(); stAnswer(false); }
     else if (m.stage === 'end' && k === 'Enter') { e.preventDefault(); actions.stagain(); }
+  });
+
+  // ----- TV remote: move focus with the arrows, Back leaves -----
+  function tvFocus(prev) {
+    if (!TV) return;
+    var m = S.st;
+    if (S.view.name === 'samething' && m && (m.stage === 'count' || m.stage === 'say')) {
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      return; // arrows answer directly here; nothing to press by accident
+    }
+    var el = null;
+    if (prev) el = app.querySelector('[data-act="' + prev.act + '"]' + (prev.arg !== null ? '[data-arg="' + prev.arg + '"]' : ''));
+    if (!el || el.disabled) el = app.querySelector('[data-tvfocus]:not([disabled])') || app.querySelector('button:not([disabled])');
+    if (el) el.focus({ preventScroll: true });
+  }
+  var BACK_KEYS = { Escape: 1, Backspace: 1, BrowserBack: 1, GoBack: 1 };
+  document.addEventListener('keydown', function (e) {
+    if (!TV || e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (BACK_KEYS[e.key] || e.keyCode === 461 || e.keyCode === 10009) { // 461: LG, 10009: Samsung
+      if (S.view.name !== 'home') { e.preventDefault(); actions.home(); }
+      return;
+    }
+    var dir = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[e.key];
+    if (!dir) return;
+    e.preventDefault();
+    var all = Array.prototype.filter.call(app.querySelectorAll('button:not([disabled])'), function (b) { return b.offsetParent !== null || getComputedStyle(b).position === 'fixed'; });
+    var cur = document.activeElement;
+    if (all.indexOf(cur) < 0) { if (all[0]) all[0].focus(); return; }
+    var r = cur.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2, best = null, bestD = Infinity;
+    all.forEach(function (b) {
+      if (b === cur) return;
+      var q = b.getBoundingClientRect(), x = q.left + q.width / 2 - cx, y = q.top + q.height / 2 - cy;
+      var along = x * dir[0] + y * dir[1];
+      if (along <= 4) return;
+      var across = Math.abs(x * dir[1] + y * dir[0]);
+      var d = along + across * 2;
+      if (d < bestD) { bestD = d; best = b; }
+    });
+    if (best) best.focus({ preventScroll: true });
   });
 
   // ----- Own packs -----
@@ -615,14 +678,16 @@
     else if (v === 'packs') html = viewPacks();
     else if (v === 'pack') html = viewPack();
     else html = viewHome();
+    var a0 = document.activeElement, prev = TV && a0 && app.contains(a0) && a0.getAttribute('data-act') ? { act: a0.getAttribute('data-act'), arg: a0.getAttribute('data-arg') } : null;
     app.innerHTML = html;
+    tvFocus(prev);
     if (S.focusAdd) { S.focusAdd = false; var a = document.getElementById('newword'); if (a) a.focus(); }
   }
   function go(view) {
     S.view = view; S.confirmDel = null; render();
     try { window.scrollTo(0, 0); } catch (e) {}
     var first = app.querySelector('h1, .bar-title, .stage-title');
-    if (first && S.view.name !== 'pannben' && S.view.name !== 'samething') { first.setAttribute('tabindex', '-1'); first.focus({ preventScroll: true }); }
+    if (!TV && first && S.view.name !== 'pannben' && S.view.name !== 'samething') { first.setAttribute('tabindex', '-1'); first.focus({ preventScroll: true }); }
   }
   function toSetup() { endRound(); S.round = null; go({ name: 'setup' }); }
 
