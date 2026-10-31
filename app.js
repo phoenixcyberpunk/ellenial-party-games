@@ -15,7 +15,7 @@
   };
 
   var LANGS = ['sv', 'en'];
-  var GAMES = ['pannben', 'imposter', 'charades', 'samething'];
+  var GAMES = ['pannben', 'imposter', 'charades', 'samething', 'hatt'];
 
   var S = {
     pbRot: 'l', // PANNBEN: which way the phone is turned sideways (see setRot)
@@ -82,6 +82,7 @@
       imposter: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/><path d="M8.6 8.8a2 2 0 1 1 2.6 1.9c-.5.2-.7.6-.7 1.1"/><path d="M10.5 13.6h.01"/></svg>',
       charades: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2"/><path d="M12 7.5v7"/><path d="M12 9.5l-5-3"/><path d="M12 9.5l4.5-4"/><path d="M12 14.5l-3.5 6"/><path d="M12 14.5l3.5 6"/></svg>',
       samething: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3h6A2.5 2.5 0 0 1 14 5.5v3A2.5 2.5 0 0 1 11.5 11H7l-3 2.5V11a2.5 2.5 0 0 1-1-2z"/><path d="M21 13.5a2.5 2.5 0 0 0-2.5-2.5h-6a2.5 2.5 0 0 0-2.5 2.5v3a2.5 2.5 0 0 0 2.5 2.5H17l3 2.5V19a2.5 2.5 0 0 0 1-2z"/></svg>',
+      hatt: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 15V7.5C7 5.6 9.2 4 12 4s5 1.6 5 3.5V15"/><path d="M3 16.5c0-1 4-2 9-2s9 1 9 2-4 2.5-9 2.5-9-1.5-9-2.5z"/><path d="M7 12.5c1.5.6 3.2.9 5 .9s3.5-.3 5-.9"/><path d="M14.5 5.5l2-2.5h2.5l-2 3"/></svg>',
       packs: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="12" height="15" rx="2"/><path d="M8 3h10a2 2 0 0 1 2 2v13"/><path d="M8 11h4"/><path d="M8 15h4"/></svg>'
     }
   };
@@ -682,6 +683,7 @@
     else if (v === 'charades') html = viewCharades();
     else if (v === 'pannben') html = viewPannben();
     else if (v === 'samething' && S.st) html = viewSameThing();
+    else if (v === 'hatt' && HATT) html = HATT.view();
     else if (v === 'packs') html = viewPacks();
     else if (v === 'pack') html = viewPack();
     else html = viewHome();
@@ -707,6 +709,7 @@
     setup: toSetup,
     open: function (g) {
       if (g === 'samething') { stNew(true); go({ name: 'samething' }); return; }
+      if (g === 'hatt') { if (HATT) HATT.actions.hopen(); return; }
       S.setup.game = g;
       var ids = packsFor(g).map(function (p) { return p.id; });
       if (!S.setup.ownId && S.setup.packId !== 'mix' && ids.indexOf(S.setup.packId) < 0) S.setup.packId = ids[0] || 'mix';
@@ -791,6 +794,13 @@
     }
   };
 
+  // Lapp i hatt lives in hatt.js; it gets the helpers it needs from here.
+  var HATT = window.EPHatt ? window.EPHatt({
+    S: S, t: t, esc: esc, I: I, app: app, store: store, shuffle: shuffle, buzz: buzz, fmt: fmt,
+    keepAwake: keepAwake, builtIn: builtIn, backBtn: backBtn, go: go, render: render
+  }) : null;
+  if (HATT) Object.keys(HATT.actions).forEach(function (k) { actions[k] = HATT.actions[k]; });
+
   app.addEventListener('click', function (e) {
     var el = e.target.closest('[data-act]');
     if (!el || el.disabled || !app.contains(el)) return;
@@ -825,6 +835,7 @@
       S.packs.en = res[2]; S.packs.sv = res[3];
       S.copy = COPY[S.lang];
       render();
+      if (HATT) HATT.boot();
     })
     .catch(function () {
       app.innerHTML = '<p class="help">Could not load the game. Check your connection once, then it works offline.</p>';
