@@ -139,7 +139,12 @@
     "remoteHint": "Remote: OK starts · ◀ same · ▶ different · Back leaves",
     "phoneTip": "On a TV? Open tv.ellenial.app in the TV's browser and play with the remote."
   },
-  "footer": "Made by people, for people. Free, no ads, nothing tracked.",
+  "footer": "Made by me, with the help of AI. Free, no ads, nothing tracked.",
+  "theme": "Theme",
+  "themeAuto": "Auto",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "themeAutoHint": "Follows your phone",
   "hatt": {
     "intro": "Everyone plays on their own phone. Each person adds 3–5 words, then you take turns describing them to your team. Best with 4+ players. The game lives for up to 24 hours.",
     "yourName": "Your name",
@@ -241,6 +246,6 @@
       "r3": { "name": "Charades", "rule": "Act it out. No talking and no sounds.", "short": "Act it out, no sound" },
       "r4": { "name": "One sound", "rule": "Make one sound. No words, no acting.", "short": "One sound only" }
     },
-    "err": { "name": "Write your name first.", "nogame": "We couldn't find that game. Check the code.", "noplayer": "This phone isn't in that game any more.", "started": "That game has already started.", "full": "That game is full (16 players).", "maxwords": "You already have 5 words.", "needwords": "Add at least 3 words first.", "needteam": "Pick a team first.", "busy": "Lots of games right now. Try again in a while.", "net": "No connection. Check your internet and try again." }
+    "err": { "name": "Write your name first.", "nogame": "Couldn’t find that game. Check the code.", "noplayer": "This phone isn't in that game any more.", "started": "That game has already started.", "full": "That game is full (16 players).", "maxwords": "You already have 5 words.", "needwords": "Add at least 3 words first.", "needteam": "Pick a team first.", "busy": "Lots of games right now. Try again in a while.", "net": "No connection. Check your internet and try again." }
   }
 }

@@ -17,7 +17,9 @@ Part of Ellenial: free tools made by people, for people. No account, no ads, not
   - Data: a game lives for up to 24 h in three small `hatt_*` tables in the Gillefeeling Supabase project (`supabase/lapp-i-hatt.sql`). No accounts: each phone keeps a random player token. The tables are closed to the API; the app can only call the `hatt_*` functions, which check that token. Other players' words are only sent once the game starts. All words are deleted the moment a game ends, and whole games (names included) are deleted after 24 h by an hourly job.
 - Open it once, add it to your home screen, and it keeps working with no internet (a service worker caches every file).
 - Apart from Lapp i hatt: no server, no database. Names typed for a game are forgotten when it ends. Your own word packs are saved only in that phone's browser storage.
-- Same look as Gillefeeling: colours from Ellen's flower logo (cream, indigo, lavender), Fraunces + Instrument Sans (SIL Open Font License), served from this site so no font service sees who plays.
+- The Ellenial look (final, 1 Nov 2026): the shared Ellenial palette in light and dark (Peach, Card, Lavender, Periwinkle, Indigo, Night), Fraunces for headings and DM Sans for text (SIL Open Font License), served from this site so no font service sees who plays.
+- Auto / Light / Dark switch on the home screen, the shared `ellenial-theme.js` from ellenial maps. Saved on this phone only. Add `?theme=light` or `?theme=dark` to test.
+- Accessibility: text at least 4.5:1, buttons, inputs and outlines at least 3:1, and nothing relies on colour alone (✓ / ✕, = / ≠, ☀ Sun / ☾ Moon).
 
 ## Files
 
@@ -59,4 +61,4 @@ AGPL-3.0-only, the same as the Ellenial site. See `LICENSE`. The fonts in `fonts
 - Product and design: Ellen Nilsson
 - Code: written with Claude
 - Icon: placeholder shapes until a person draws the real one
-- Fonts: Fraunces (The Fraunces Project Authors), Instrument Sans (The Instrument Sans Project Authors), SIL OFL 1.1
+- Fonts: Fraunces (The Fraunces Project Authors), DM Sans (The DM Sans Project Authors), SIL OFL 1.1

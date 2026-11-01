@@ -139,7 +139,12 @@
     "remoteHint": "Fjärrkontroll: OK startar · ◀ samma · ▶ olika · Tillbaka går ut",
     "phoneTip": "Har ni en tv? Öppna tv.ellenial.app i tv:ns webbläsare och spela med fjärrkontrollen."
   },
-  "footer": "Gjort av människor, för människor. Gratis, ingen reklam, inget spåras.",
+  "footer": "Gjort av mig, med hjälp av AI. Gratis, ingen reklam, inget spåras.",
+  "theme": "Tema",
+  "themeAuto": "Auto",
+  "themeLight": "Ljust",
+  "themeDark": "Mörkt",
+  "themeAutoHint": "Följer telefonen",
   "hatt": {
     "intro": "Alla spelar på sin egen telefon. Var och en skriver 3–5 ord, sen turas ni om att beskriva dem för ert lag. Bäst med 4 eller fler. Spelet finns kvar i upp till 24 timmar.",
     "yourName": "Ditt namn",
@@ -241,6 +246,6 @@
       "r3": { "name": "Charader", "rule": "Spela upp det. Inget prat och inga ljud.", "short": "Spela upp, inga ljud" },
       "r4": { "name": "Ett ljud", "rule": "Gör ett ljud. Inga ord, inget skådespel.", "short": "Bara ett ljud" }
     },
-    "err": { "name": "Skriv ditt namn först.", "nogame": "Vi hittade inte det spelet. Kolla koden.", "noplayer": "Den här telefonen är inte med i spelet längre.", "started": "Det spelet har redan startat.", "full": "Spelet är fullt (16 spelare).", "maxwords": "Du har redan 5 ord.", "needwords": "Skriv minst 3 ord först.", "needteam": "Välj ett lag först.", "busy": "Många spel just nu. Försök igen om en stund.", "net": "Ingen anslutning. Kolla internet och försök igen." }
+    "err": { "name": "Skriv ditt namn först.", "nogame": "Hittade inte det spelet. Kolla koden.", "noplayer": "Den här telefonen är inte med i spelet längre.", "started": "Det spelet har redan startat.", "full": "Spelet är fullt (16 spelare).", "maxwords": "Du har redan 5 ord.", "needwords": "Skriv minst 3 ord först.", "needteam": "Välj ett lag först.", "busy": "Många spel just nu. Försök igen om en stund.", "net": "Ingen anslutning. Kolla internet och försök igen." }
   }
 }
