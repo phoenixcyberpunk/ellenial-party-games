@@ -1,6 +1,6 @@
 /* Offline support: after the first visit, everything is played from this cache.
    Bump VERSION whenever any file changes, so phones pick up the new one. */
-var VERSION = 'party-v8';
+var VERSION = 'party-v9';
 var FILES = [
   './',
   'index.html',
@@ -13,9 +13,11 @@ var FILES = [
   'packs/en.json',
   'packs/sv.json',
   'fonts/fraunces-latin-500-normal.woff2',
-  'fonts/instrument-sans-latin-400-normal.woff2',
-  'fonts/instrument-sans-latin-500-normal.woff2',
-  'fonts/instrument-sans-latin-600-normal.woff2',
+  'fonts/dm-sans-latin-400-normal.woff2',
+  'fonts/dm-sans-latin-500-normal.woff2',
+  'fonts/dm-sans-latin-600-normal.woff2',
+  'fonts/dm-sans-latin-700-normal.woff2',
+  'ellenial-theme.js',
   'icons/icon.svg',
   'icons/icon-192.png',
   'icons/icon-512.png'

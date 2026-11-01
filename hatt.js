@@ -107,7 +107,7 @@
     // ---------- Helpers ----------
     function player(id) { return ((H.data && H.data.players) || []).filter(function (p) { return p.id === id; })[0] || null; }
     function pname(id) { var p = player(id); return p ? p.name : '?'; }
-    function teamName(i) { return t('hatt.team' + i); }
+    function teamName(i) { return (i === 0 ? '☀\uFE0E ' : '☾\uFE0E ') + t('hatt.team' + i); } // symbol + name, never colour alone
     function teamClass(i) { return 'h-team' + i; }
     function roundName(r) { return t('hatt.rounds.r' + r + '.name'); }
     function plural(n, one, many) { return t(n === 1 ? one : many, { n: n }); }
@@ -341,8 +341,8 @@
         '<span class="big-word">' + esc(w) + '</span></div>' +
         '<p class="center-text">' + esc(plural(tu.guessed.length, 'hatt.guessedOne', 'hatt.guessedMany')) + '</p>' +
         '<div class="btn-row"><button type="button" class="btn h-skip" data-act="hskipword"' + (skipLeft === 0 || tu.queue.length < 2 ? ' disabled' : '') + '>' +
-        '<span>' + esc(t('hatt.skip')) + '<small>' + esc(skipLeft < 0 ? t('hatt.unlimitedLow') : t('hatt.skipsLeft', { n: skipLeft })) + '</small></span></button>' +
-        '<button type="button" class="btn h-got" data-act="hgot">' + esc(t('hatt.guessed')) + '</button></div>';
+        '<span><span><span aria-hidden="true">✕ </span>' + esc(t('hatt.skip')) + '</span><small>' + esc(skipLeft < 0 ? t('hatt.unlimitedLow') : t('hatt.skipsLeft', { n: skipLeft })) + '</small></span></button>' +
+        '<button type="button" class="btn h-got" data-act="hgot"><span aria-hidden="true">✓ </span>' + esc(t('hatt.guessed')) + '</button></div>';
       return h;
     }
 

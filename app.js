@@ -250,8 +250,21 @@
         '<span class="game-text"><span class="tvh-name">' + esc(t('games.' + g + '.name')) + '</span>' +
         '<span class="tvh-desc">' + esc(t('games.' + g + '.desc')) + '</span></span></button>';
     });
-    return h + '</div><p class="tvh-more">' + esc(t('tv.more')) + '</p><p class="tvh-foot">' + esc(t('footer')) + '</p></div>';
+    return h + '</div><p class="tvh-more">' + esc(t('tv.more')) + '</p><div class="foot-wrap"><p class="tvh-foot">' + esc(t('footer')) + '</p>' + prefsRow() + '</div></div>';
   }
+  // Auto / Light / Dark (shared Ellenial switch from ellenial maps). The slot is filled after each render.
+  function prefsRow() {
+    return window.EllenialTheme ? '<p class="prefs"><span class="prefs-label">' + esc(t('theme')) + ':</span><span data-theme-slot></span></p>' : '';
+  }
+  function fillThemeSlot() {
+    var slot = app.querySelector('[data-theme-slot]');
+    if (!slot || !window.EllenialTheme) return;
+    slot.replaceWith(window.EllenialTheme.control({
+      label: t('theme'), autoHint: t('themeAutoHint'),
+      labels: { auto: t('themeAuto'), light: t('themeLight'), dark: t('themeDark') }
+    }));
+  }
+  function mark(sym) { return '<span aria-hidden="true">' + sym + ' </span>'; } // never colour alone
   function viewHome() {
     if (TV) return viewTvHome();
     var draft = S.packs[S.lang] && S.packs[S.lang].draft;
@@ -272,7 +285,7 @@
       '<span class="game-icon gi-packs">' + I.game.packs + '</span>' +
       '<span class="game-text"><span class="game-name">' + esc(t('yourPacks')) + '</span>' +
       '<span class="game-desc">' + esc(t('yourPacksDesc')) + '</span></span></button>';
-    h += '</div><p class="foot">' + esc(t('footer')) + '</p>';
+    h += '</div><div class="foot-wrap"><p class="foot">' + esc(t('footer')) + '</p>' + prefsRow() + '</div>';
     return h;
   }
 
@@ -442,11 +455,12 @@
     }
     var flash = r.flash ? ' ' + r.flash : '';
     var label = r.flash === 'ok' ? t('pannben.correct') : r.flash === 'skip' ? t('pannben.passed') : r.item.word;
+    var labelHtml = (r.flash === 'ok' ? mark('✓') : r.flash === 'skip' ? mark('✕') : '') + esc(label);
     return '<div class="pb rot-' + S.pbRot + flash + '">' +
       '<div class="pb-top"><button type="button" class="round-btn" data-act="stopround" aria-label="' + esc(t('pause')) + '">' + I.pause + '</button>' +
       '<span class="pb-badge">' + esc(t('groupSoFar')) + ': ' + S.groupTotal + '</span>' +
       '<span class="pb-time" data-timer>' + fmt(r.left) + '</span></div>' +
-      '<div class="pb-mid" aria-live="polite"><span class="pb-word">' + esc(label) + '</span>' +
+      '<div class="pb-mid" aria-live="polite"><span class="pb-word">' + labelHtml + '</span>' +
       (r.flash ? '' : '<span class="pb-cat">' + esc(r.item.cat) + (S.setup.ownId ? '' : ' · ' + esc(t('setup.levels.' + S.setup.level))) + '</span>') + '</div>' +
       '<div class="pb-bottom"><button type="button" class="pb-btn pb-pass" data-act="pbpass">' + I.up + esc(t('pannben.pass')) + '</button>' +
       '<span class="pb-hint">' + esc(t('pannben.tiltHow')) + '</span>' +
@@ -558,7 +572,7 @@
         var on = m.ready[p];
         h += '<button type="button" class="st-ready' + (on ? ' on' : '') + '" data-act="stready" data-arg="' + p + '" aria-pressed="' + on + '">' +
           '<span class="st-who">' + esc(t('samething.p' + (p + 1))) + '</span>' +
-          '<span>' + esc(on ? t('samething.isReady') : t('samething.imReady')) + '</span></button>';
+          '<span>' + (on ? mark('✓') : '') + esc(on ? t('samething.isReady') : t('samething.imReady')) + '</span></button>';
       });
       h += '</div>' + (TV ? '<p class="st-keys">' + esc(t('tv.remoteHint')) + '</p>'
         : '<p class="st-keys kb">' + esc(t('samething.keysHint')) + '</p><p class="st-keys">' + esc(t('tv.phoneTip')) + '</p>');
@@ -580,8 +594,8 @@
         '<div class="st-mid"><span class="st-cat">' + esc(cat) + '</span>' +
         (reading ? '<span class="st-count st-hold" aria-hidden="true">3</span>' // keeps the layout still while reading
           : '<span class="' + (m.flash ? 'st-say st-flash' : saying ? 'st-say' : 'st-count') + '" aria-live="assertive">' + esc(under) + '</span>') + '</div>' +
-        '<div class="st-buttons"><button type="button" class="st-big st-same" data-act="stsame"' + (saying && !m.flash ? '' : ' disabled') + '>' + esc(t('samething.same')) + '</button>' +
-        '<button type="button" class="st-big st-diff" data-act="stdiff"' + (saying && !m.flash ? '' : ' disabled') + '>' + esc(t('samething.different')) + '</button></div>';
+        '<div class="st-buttons"><button type="button" class="st-big st-same" data-act="stsame"' + (saying && !m.flash ? '' : ' disabled') + '><span>' + mark('=') + esc(t('samething.same')) + '</span></button>' +
+        '<button type="button" class="st-big st-diff" data-act="stdiff"' + (saying && !m.flash ? '' : ' disabled') + '><span>' + mark('≠') + esc(t('samething.different')) + '</span></button></div>';
     }
     return h + '</div>';
   }
@@ -689,6 +703,7 @@
     else html = viewHome();
     var a0 = document.activeElement, prev = TV && a0 && app.contains(a0) && a0.getAttribute('data-act') ? { act: a0.getAttribute('data-act'), arg: a0.getAttribute('data-arg') } : null;
     app.innerHTML = html;
+    fillThemeSlot();
     tvFocus(prev);
     if (S.focusAdd) { S.focusAdd = false; var a = document.getElementById('newword'); if (a) a.focus(); }
   }
