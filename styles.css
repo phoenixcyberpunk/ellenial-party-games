@@ -264,6 +264,7 @@ section.group { display: flex; flex-direction: column; gap: 10px; }
 .st-how { font-size: clamp(16px, 2.6vmin, 28px); line-height: 1.45; max-width: 34em; color: var(--muted); }
 .st-cat { font-family: var(--display); font-weight: 500; font-size: clamp(44px, 12vmin, 150px); line-height: 1.05; overflow-wrap: anywhere; }
 .st-count { font-family: var(--body); font-weight: 600; font-variant-numeric: tabular-nums; font-size: clamp(80px, 28vmin, 320px); line-height: 1; color: var(--teal); }
+.st-hold { visibility: hidden; }
 .st-say { font-family: var(--display); font-weight: 500; font-size: clamp(44px, 12vmin, 150px); line-height: 1.1; color: var(--teal-dark); }
 .st-flash { font-size: clamp(32px, 8vmin, 100px); }
 .st-total { font-family: var(--display); font-weight: 500; font-size: clamp(96px, 26vmin, 300px); line-height: 1; }

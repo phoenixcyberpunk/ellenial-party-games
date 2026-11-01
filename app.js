@@ -464,10 +464,12 @@
   }
 
   // ----- Don't say the same thing -----
-  // Two players, one (big) screen. A category counts down from 3; on zero both say something
+  // Two players, one (big) screen. A category shows alone for a moment (ST_READ), then counts
+  // down from 3; on zero both say something
   // from it. Same answer = one point for the pair, and fewer points is better.
   // Categories come from packs/<lang>.json "categories", shuffled for every new pair of players.
   var ST_ROUND = 10; // categories per round
+  var ST_READ = 2000; // ms the category shows on its own before the 3-2-1, time to read and think
   var stTimer = null;
   function stClear() { if (stTimer) { clearTimeout(stTimer); stTimer = null; } }
   function stEnd() {
@@ -494,9 +496,13 @@
   }
   function stCount() {
     var m = S.st;
-    m.cat = stNextCat(); m.i++; m.count = 3; m.flash = ''; m.stage = 'count';
+    m.cat = stNextCat(); m.i++; m.count = 3; m.flash = ''; m.stage = 'read';
     render();
-    stTick();
+    stClear();
+    stTimer = setTimeout(function () {
+      if (S.st !== m || m.stage !== 'read') return;
+      m.stage = 'count'; render(); stTick();
+    }, ST_READ);
   }
   function stTick() {
     stClear();
@@ -566,12 +572,13 @@
         '<button type="button" class="st-big st-go" data-act="stagain" data-tvfocus>' + esc(t('samething.again')) + '</button></div>' +
         '<p class="st-keys">' + esc(t('samething.againHelp')) + '</p>';
     } else {
-      var saying = m.stage === 'say';
+      var saying = m.stage === 'say', reading = m.stage === 'read';
       var cat = stCats()[m.cat] || '—';
       var under = m.flash === 'same' ? t('samething.flashSame') : m.flash === 'diff' ? t('samething.flashDiff') : saying ? t('samething.sayIt') : String(m.count);
       h += top('<button type="button" class="round-btn" data-act="home" aria-label="' + esc(t('pause')) + '">' + I.pause + '</button>') +
         '<div class="st-mid"><span class="st-cat">' + esc(cat) + '</span>' +
-        '<span class="' + (m.flash ? 'st-say st-flash' : saying ? 'st-say' : 'st-count') + '" aria-live="assertive">' + esc(under) + '</span></div>' +
+        (reading ? '<span class="st-count st-hold" aria-hidden="true">3</span>' // keeps the layout still while reading
+          : '<span class="' + (m.flash ? 'st-say st-flash' : saying ? 'st-say' : 'st-count') + '" aria-live="assertive">' + esc(under) + '</span>') + '</div>' +
         '<div class="st-buttons"><button type="button" class="st-big st-same" data-act="stsame"' + (saying && !m.flash ? '' : ' disabled') + '>' + esc(t('samething.same')) + '</button>' +
         '<button type="button" class="st-big st-diff" data-act="stdiff"' + (saying && !m.flash ? '' : ' disabled') + '>' + esc(t('samething.different')) + '</button></div>';
     }
@@ -582,7 +589,7 @@
     var m = S.st, k = e.key;
     var onButton = document.activeElement && document.activeElement.tagName === 'BUTTON' && app.contains(document.activeElement);
     if ((k === 'Enter' || k === ' ') && onButton) return; // the focused button presses itself
-    if (TV && m.stage === 'count' && k.indexOf('Arrow') === 0) { e.preventDefault(); return; }
+    if (TV && (m.stage === 'read' || m.stage === 'count') && k.indexOf('Arrow') === 0) { e.preventDefault(); return; }
     if (m.stage === 'ready' && (k === 'Enter' || k === ' ')) { e.preventDefault(); stReady('both'); }
     else if (m.stage === 'say' && k === 'ArrowLeft') { e.preventDefault(); stAnswer(true); }
     else if (m.stage === 'say' && k === 'ArrowRight') { e.preventDefault(); stAnswer(false); }
@@ -593,7 +600,7 @@
   function tvFocus(prev) {
     if (!TV) return;
     var m = S.st;
-    if (S.view.name === 'samething' && m && (m.stage === 'count' || m.stage === 'say')) {
+    if (S.view.name === 'samething' && m && (m.stage === 'read' || m.stage === 'count' || m.stage === 'say')) {
       if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
       return; // arrows answer directly here; nothing to press by accident
     }

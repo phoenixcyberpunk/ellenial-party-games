@@ -108,7 +108,7 @@
   },
   "samething": {
     "ready": "Redo?",
-    "how": "En kategori visas och räknar ner från 3. På noll säger ni båda något ur den högt, samtidigt. Sa ni samma sak? Då blir det ett poäng. Färre poäng är bättre.",
+    "how": "En kategori visas, ni får en stund att tänka, sedan räknar den ner från 3. På noll säger ni båda något ur den högt, samtidigt. Sa ni samma sak? Då blir det ett poäng. Färre poäng är bättre.",
     "p1": "Spelare 1",
     "p2": "Spelare 2",
     "imReady": "Redo",
