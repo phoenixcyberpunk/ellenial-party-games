@@ -108,7 +108,7 @@
   },
   "samething": {
     "ready": "Ready?",
-    "how": "A category shows up and counts down from 3. On zero, you both say something from it out loud at the same time. Said the same thing? That's a point. Fewer points is better.",
+    "how": "A category shows up, you get a moment to think, then it counts down from 3. On zero, you both say something from it out loud at the same time. Said the same thing? That's a point. Fewer points is better.",
     "p1": "Player 1",
     "p2": "Player 2",
     "imReady": "Ready",
