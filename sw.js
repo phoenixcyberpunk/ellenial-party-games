@@ -1,6 +1,6 @@
 /* Offline support: after the first visit, everything is played from this cache.
    Bump VERSION whenever any file changes, so phones pick up the new one. */
-var VERSION = 'party-v7';
+var VERSION = 'party-v8';
 var FILES = [
   './',
   'index.html',
