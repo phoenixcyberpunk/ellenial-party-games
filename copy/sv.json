@@ -130,7 +130,7 @@
     "msgMany": "Ni tänker likadant. Det är ju lite gulligt.",
     "again": "Kör vidare",
     "newPlayers": "Nya spelare",
-    "againHelp": "Kör vidare: samma spelare, inga upprepade kategorier. Nya spelare: kategorierna blandas från början."
+    "againHelp": "Poängen börjar om från 0. Kategorierna upprepas inte förrän alla har kommit, inte ens om ni börjar om."
   },
   "tv": {
     "tagline": "På tv:n, spelas med fjärrkontrollen.",

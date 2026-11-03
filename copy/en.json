@@ -130,7 +130,7 @@
     "msgMany": "You two think alike. That's kind of sweet.",
     "again": "Keep going",
     "newPlayers": "New players",
-    "againHelp": "Keep going: same players, no repeated categories. New players: categories shuffled from the start."
+    "againHelp": "Points start again from 0. No category comes back until every one has had its turn, even if you start over."
   },
   "tv": {
     "tagline": "On the TV, played with the remote.",

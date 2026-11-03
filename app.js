@@ -31,7 +31,6 @@
     groupTotal: 0,
     motion: 'unknown', // 'on' | 'off' | 'unknown'
     st: null,          // Don't say the same thing: the game in progress
-    stDeck: { lang: '', order: [], pos: 0 },
     focusAdd: false
   };
   if (LANGS.indexOf(S.lang) < 0) S.lang = 'en';
@@ -482,7 +481,7 @@
   // Two players, one (big) screen. A category shows alone for a moment (ST_READ), then counts
   // down from 3; on zero both say something
   // from it. Same answer = one point for the pair, and fewer points is better.
-  // Categories come from packs/<lang>.json "categories", shuffled for every new pair of players.
+  // Categories come from packs/<lang>.json "categories"; see stNextCat for how they're drawn.
   var ST_ROUND = 10; // categories per round
   var ST_READ = 2000; // ms the category shows on its own before the 3-2-1, time to read and think
   var stTimer = null;
@@ -492,21 +491,29 @@
     if (S.st) { keepAwake(false); goFull(false); S.st = null; }
   }
   function stCats() { return (S.packs[S.lang] && S.packs[S.lang].categories) || []; }
-  function stShuffle() {
-    var n = stCats().length, order = [];
-    for (var i = 0; i < n; i++) order.push(i);
-    S.stDeck = { lang: S.lang, order: shuffle(order), pos: 0 };
-  }
+  // Categories are drawn from what this phone/TV hasn't shown yet, remembered across rounds,
+  // reloads and "New players" (by name, so editing the list never breaks it). Only when every
+  // category has come up does it start over, and even then the last round's ones wait a round.
+  function stSeenKey() { return 'ep.stSeen.' + S.lang; }
   function stNextCat() {
-    var d = S.stDeck;
-    if (d.lang !== S.lang || d.pos >= d.order.length) stShuffle();
-    d = S.stDeck;
-    return d.order[d.pos++];
+    var cats = stCats();
+    var seen = store.get(stSeenKey(), []);
+    if (!Array.isArray(seen)) seen = [];
+    seen = seen.filter(function (c) { return cats.indexOf(c) !== -1; });
+    var left = [];
+    cats.forEach(function (c, i) { if (seen.indexOf(c) === -1) left.push(i); });
+    if (!left.length) {
+      seen = seen.slice(-ST_ROUND);
+      cats.forEach(function (c, i) { if (seen.indexOf(c) === -1) left.push(i); });
+      if (!left.length) { seen = []; left = cats.map(function (c, i) { return i; }); }
+    }
+    var pick = left[Math.floor(Math.random() * left.length)];
+    seen.push(cats[pick]);
+    store.set(stSeenKey(), seen);
+    return pick;
   }
-  function stNew(newPlayers) {
-    if (newPlayers || !S.st) stShuffle();
+  function stNew() {
     stClear();
-    // Same players keep drawing from the same shuffled order, so categories don't repeat.
     S.st = { stage: 'ready', ready: [false, false], points: 0, i: 0, cat: -1, count: 3, flash: '' };
   }
   function stCount() {
@@ -723,7 +730,7 @@
     home: function () { endRound(); S.round = null; S.imp = null; go({ name: 'home' }); },
     setup: toSetup,
     open: function (g) {
-      if (g === 'samething') { stNew(true); go({ name: 'samething' }); return; }
+      if (g === 'samething') { stNew(); go({ name: 'samething' }); return; }
       if (g === 'hatt') { if (HATT) HATT.actions.hopen(); return; }
       S.setup.game = g;
       var ids = packsFor(g).map(function (p) { return p.id; });
@@ -788,8 +795,8 @@
     stready: function (p) { stReady(p); },
     stsame: function () { stAnswer(true); },
     stdiff: function () { stAnswer(false); },
-    stagain: function () { stNew(false); go({ name: 'samething' }); },
-    stnewp: function () { stNew(true); go({ name: 'samething' }); },
+    stagain: function () { stNew(); go({ name: 'samething' }); },
+    stnewp: function () { stNew(); go({ name: 'samething' }); },
     // Own packs
     packs: function () { go({ name: 'packs' }); },
     newpack: function () {
