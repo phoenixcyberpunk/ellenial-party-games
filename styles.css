@@ -17,15 +17,15 @@
   --lavender: #F1EAF8;   /* soft highlights, secondary chips */
   --peri: #B7B1E6;       /* Periwinkle: selected, active tiles, play screens (fill only) */
   --accent: #342E86;     /* Indigo: buttons, accents */
-  --on-accent: #FFFFFF;  /* text on Indigo */
+  --on-accent: #FFFBF5;  /* on-indigo: text on Indigo (10.8:1) */
   --accent-ink: #342E86; /* accent-coloured text */
   --ink: #1F1A2E;        /* Night: text */
   --muted: #575166;      /* secondary text */
   --on-peri-muted: #1F1A2E; /* Muted is only 3.8:1 on Periwinkle, so use Night there */
   --line: #EDE1D1;       /* decorative borders only (1.2:1) */
-  --edge: #8A8299;       /* edges of tappable things: 3.3:1 on Peach, 3.6:1 on Card */
+  --edge: #342E86;       /* Indigo: edges of tappable things (design system rule), 10:1 on Peach */
   --night: #1F1A2E;      /* "You're the imposter" card */
-  --night-ink: #FFFFFF;
+  --night-ink: #FFFBF5;  /* Card colour on Night */
   --ok: #D5E3D6;         /* semantic: correct / ready (always with ✓ or a word) */
   --no: #EED3D6;         /* semantic: same thing (always with a word) */
   --danger: #A2433B;     /* semantic: errors, time running out */
@@ -38,7 +38,7 @@
 :root[data-theme="dark"] {
     --bg: #17141F; --card: #221E2C; --lavender: #2D2640; --peri: #463C6E;
     --accent: #B39AE8; --on-accent: #1A1430; --accent-ink: #B39AE8;
-    --ink: #F3EEF8; --muted: #C2BACF; --on-peri-muted: #C2BACF; --line: #332D40; --edge: #7A7090;
+    --ink: #F3EEF8; --muted: #C2BACF; --on-peri-muted: #C2BACF; --line: #332D40; --edge: #B39AE8;
     --night: #2D2640; --night-ink: #F3EEF8;
     --ok: #31423A; --no: #47343A; --danger: #E59A91; --red: #C2453D; --green: #2F7F50;
     color-scheme: dark;
@@ -47,7 +47,7 @@
   :root:not([data-theme]) {
     --bg: #17141F; --card: #221E2C; --lavender: #2D2640; --peri: #463C6E;
     --accent: #B39AE8; --on-accent: #1A1430; --accent-ink: #B39AE8;
-    --ink: #F3EEF8; --muted: #C2BACF; --on-peri-muted: #C2BACF; --line: #332D40; --edge: #7A7090;
+    --ink: #F3EEF8; --muted: #C2BACF; --on-peri-muted: #C2BACF; --line: #332D40; --edge: #B39AE8;
     --night: #2D2640; --night-ink: #F3EEF8;
     --ok: #31423A; --no: #47343A; --danger: #E59A91; --red: #C2453D; --green: #2F7F50;
     color-scheme: dark;
@@ -399,7 +399,7 @@ html.tv .st-keys { font-size: clamp(16px, 2.6vmin, 30px); }
 
 /* Periwinkle surfaces: Muted is too faint there in light mode, so secondary text uses Night. */
 .pb, .stage.yellow, .gi-pannben, .gi-charades, .h-team0, .h-r1, .h-r3, .h-w0, .h-w2, .chip[aria-pressed="true"], .seg button[aria-pressed="true"] { --muted: var(--on-peri-muted); }
-/* …and edges on Periwinkle use Night, since the usual edge is too close to it. */
+/* …and edges on Periwinkle use Night (8.4:1), the strongest pair on that fill. */
 .pb, .stage.yellow, .h-team0, .st.same, .st.diff { --edge: var(--ink); }
 /* A big tappable card needs a visible edge too. */
 button.stage { border: 2px solid var(--edge); }
