@@ -416,3 +416,58 @@ html.tv .theme-switch__btn { font-size: clamp(15px, 2.4vmin, 28px); min-height: 
 .foot-wrap { margin-top: auto; display: flex; flex-direction: column; gap: 4px; }
 .foot-wrap .foot { margin-top: 0; }
 .h-seg4 button[aria-pressed="true"]::before { content: none; } /* too narrow for a tick; the Indigo outline marks it */
+
+/* Wolf in Sheep's Clothing. Night screens always use the dark palette, whatever the theme:
+   it sets the mood, and a dim screen is kinder while everyone else has their eyes closed. */
+:root.wolf-night {
+  --bg: #17141F; --card: #221E2C; --lavender: #2D2640; --peri: #463C6E;
+  --accent: #B39AE8; --on-accent: #1A1430; --accent-ink: #B39AE8;
+  --ink: #F3EEF8; --muted: #C2BACF; --on-peri-muted: #C2BACF; --line: #332D40; --edge: #B39AE8;
+  --night: #2D2640; --night-ink: #F3EEF8;
+  color-scheme: dark;
+}
+.gi-wolf { background: var(--peri); }
+.gi-wolf svg { stroke: var(--ink); }
+.w-intro { margin-top: -8px; font-size: 15px; }
+.w-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.w-names { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.w-names li { display: flex; align-items: center; background: var(--lavender); border-radius: 999px; padding-left: 14px; font-weight: 700; font-size: 15px; }
+.w-names button { width: 44px; height: 44px; border: 0; background: none; border-radius: 999px; display: flex; align-items: center; justify-content: center; }
+.w-names button svg { stroke: var(--ink); }
+.step-num.w-min { font-size: 30px; }
+.w-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.w-phase { display: inline-flex; align-items: center; gap: 6px; }
+.w-ic { stroke: var(--ink); }
+.w-tap { font-size: 22px; margin-top: 6px; }
+.w-ask { display: flex; flex-direction: column; gap: 6px; }
+.w-picks { display: flex; flex-direction: column; gap: 8px; }
+.w-picks.w-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.w-pick {
+  min-height: 52px; border: 2px solid var(--edge); border-radius: 16px; background: var(--card); color: var(--ink);
+  font-weight: 600; font-size: 16px; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; text-align: left;
+}
+.w-grid .w-pick { justify-content: center; text-align: center; min-height: 56px; }
+.w-pick small { font-size: 13px; font-weight: 500; color: var(--muted); }
+/* Selected: Periwinkle with a strong edge and a tick, never colour alone. */
+.w-pick[aria-pressed="true"] { background: var(--peri); border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); --muted: var(--on-peri-muted); }
+.w-pick[aria-pressed="true"] > span::before { content: "✓ "; }
+.w-pick.w-nobody { border-style: dashed; background: transparent; color: var(--accent-ink); }
+.w-pick.w-nobody[aria-pressed="true"] { border-style: solid; background: var(--peri); color: var(--ink); }
+.w-news strong { font-family: var(--display); font-weight: 500; font-size: 22px; line-height: 1.25; }
+.w-time span[data-wtimer] { font-family: var(--display); font-weight: 500; font-size: 64px; line-height: 1; font-variant-numeric: tabular-nums; }
+.w-time .h-bar { max-width: 260px; }
+.w-count { background: var(--lavender); border-radius: 16px; padding: 10px; text-align: center; display: flex; flex-direction: column; }
+.w-count strong { font-family: var(--display); font-weight: 500; font-size: 28px; line-height: 1.1; }
+.w-count span { font-size: 13px; color: var(--muted); }
+.w-end { display: flex; flex-direction: column; gap: 6px; align-items: center; text-align: center; padding-top: 8px; }
+.h-title.w-win { font-size: 40px; line-height: 1.1; }
+.w-note { margin: 0; font-weight: 600; }
+.w-roles { list-style: none; margin: 0; padding: 0; }
+.w-roles li { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line); }
+.w-who { display: flex; flex-direction: column; min-width: 0; }
+.w-who small { color: var(--muted); font-size: 13px; }
+.w-rp { padding: 4px 10px; border-radius: 999px; font-weight: 700; font-size: 14px; flex-shrink: 0; color: var(--ink); }
+.w-rp-wolf { background: var(--night); color: var(--night-ink); }
+.w-rp-shepherd, .w-rp-dog { background: var(--peri); }
+.w-rp-sheep { background: var(--lavender); }
+.gi-wolf, .w-rp-shepherd, .w-rp-dog { --muted: var(--on-peri-muted); }
