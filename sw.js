@@ -1,6 +1,6 @@
 /* Offline support: after the first visit, everything is played from this cache.
    Bump VERSION whenever any file changes, so phones pick up the new one. */
-var VERSION = 'party-v14';
+var VERSION = 'party-v15';
 var FILES = [
   './',
   'index.html',
@@ -19,6 +19,8 @@ var FILES = [
   'fonts/dm-sans-latin-600-normal.woff2',
   'fonts/dm-sans-latin-700-normal.woff2',
   'ellenial-theme.js',
+  'ellenial-help.js',
+  'ellenial-help.css',
   'icons/icon.svg',
   'icons/icon-192.png',
   'icons/icon-512.png',

@@ -39,6 +39,7 @@ Part of Ellenial: free tools made by people, for people. No account, no ads, not
 | `supabase/lapp-i-hatt.sql` | Lapp i hatt's tables and functions |
 | `copy/en.json`, `copy/sv.json` | Every word the app shows, one file per language |
 | `packs/en.json`, `packs/sv.json` | Word packs, one file per language; Swedish packs are written on their own, not translated |
+| `ellenial-help.js`, `ellenial-help.css` | The shared Ellenial "?" (from ellenial-bingo, copied unchanged): "How it works" in three steps, only when someone taps it. On the home and setup screens, never on TV or during play. Text in `copy/*.json` under `help` |
 | `sw.js` | Offline cache. Bump `VERSION` when any file changes |
 | `fonts/`, `icons/` | Self-hosted fonts with their licences; placeholder icon |
 

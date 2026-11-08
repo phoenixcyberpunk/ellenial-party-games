@@ -2,6 +2,7 @@
   "appName": "Party games",
   "tagline": "Pick a game and play. No account, and every game but one works offline.",
   "langSwitch": "Svenska",
+  "help": {"label": "How it works", "title": "How it works", "lead": "Three steps, then you're playing.", "done": "Got it", "close": "Close", "steps": [{"title": "Pick a game", "text": "Several games for the whole family. All but Lapp i hatt work without internet."}, {"title": "Set it up", "text": "Choose players and how hard the words are. Each game shows its rules before you start."}, {"title": "Play together", "text": "Pass the phone around, hold it to your forehead, or play on everyone's own phone in Lapp i hatt."}], "note": "Names are forgotten when the game ends. Your own word packs are saved only on this phone."},
   "langSwitchLabel": "Byt till svenska",
   "draftBanner": "Test version: word packs are drafts.",
   "back": "Back",

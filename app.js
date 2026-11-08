@@ -268,12 +268,17 @@
       labels: { auto: t('themeAuto'), light: t('themeLight'), dark: t('themeDark') }
     }));
   }
+  // The shared Ellenial "?" (ellenial-help.js, decided 8 Nov 2026): help only when someone asks for it.
+  function helpBtn() {
+    if (TV || !window.EllenialHelp) return '';
+    return '<button type="button" class="eh-q" data-act="help" aria-haspopup="dialog" aria-label="' + esc(S.copy.help.label) + '">?</button>';
+  }
   function mark(sym) { return '<span aria-hidden="true">' + sym + ' </span>'; } // never colour alone
   function viewHome() {
     if (TV) return viewTvHome();
     var draft = S.packs[S.lang] && S.packs[S.lang].draft;
     var h = '<div class="home-head"><div><h1>' + esc(t('appName')) + '</h1><p>' + esc(t('tagline')) + '</p></div>' +
-      '<button type="button" class="chip-btn" data-act="lang" aria-label="' + esc(t('langSwitchLabel')) + '" lang="' + (S.lang === 'sv' ? 'en' : 'sv') + '">' + esc(t('langSwitch')) + '</button></div>';
+      '<div class="head-btns"><button type="button" class="chip-btn" data-act="lang" aria-label="' + esc(t('langSwitchLabel')) + '" lang="' + (S.lang === 'sv' ? 'en' : 'sv') + '">' + esc(t('langSwitch')) + '</button>' + helpBtn() + '</div></div>';
     if (draft) h += '<p class="draft">' + esc(t('draftBanner')) + '</p>';
     h += '<div class="cards">';
     GAMES.forEach(function (g) {
@@ -295,7 +300,7 @@
 
   function viewSetup() {
     var st = S.setup, g = st.game;
-    var h = '<div class="bar">' + backBtn('home') + '<h1 class="bar-title">' + esc(t('games.' + g + '.name')) + '</h1></div>';
+    var h = '<div class="bar">' + backBtn('home') + '<h1 class="bar-title">' + esc(t('games.' + g + '.name')) + '</h1>' + helpBtn() + '</div>';
 
     if (g === 'imposter') {
       h += '<section class="group"><h2 class="label">' + esc(t('setup.players')) + '</h2>' +
@@ -731,6 +736,10 @@
 
   // ---------- Actions ----------
   var actions = {
+    help: function () {
+      var hp = S.copy.help;
+      window.EllenialHelp.open({ title: hp.title, lead: hp.lead, image: 'icons/icon-192.png', steps: hp.steps, note: hp.note, done: hp.done, close: hp.close });
+    },
     lang: function () {
       S.lang = S.lang === 'sv' ? 'en' : 'sv'; store.set('ep.lang', S.lang); S.copy = COPY[S.lang]; render();
     },
