@@ -109,9 +109,9 @@ h1.bar-title { font-size: 28px; margin: 0; }
   width: 100%; text-align: left; border: 2px solid var(--edge); background: var(--card); color: var(--ink);
   border-radius: 22px; padding: 16px; display: flex; gap: 14px; align-items: center;
 }
-.game-icon { width: 64px; height: 64px; border-radius: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.game-icon { width: 80px; height: 80px; border-radius: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 .game-icon svg { stroke: var(--ink); }
-.game-icon img { width: 58px; height: 58px; display: block; }
+.game-icon img { width: 74px; height: 74px; display: block; }
 .gi-pannben { background: var(--peri); }
 .gi-imposter { background: var(--lavender); }
 .gi-charades { background: var(--peri); }
@@ -301,7 +301,7 @@ html.tv #app { max-width: none; }
 .tvh-lang { font-size: clamp(15px, 2.6vmin, 30px); min-height: clamp(44px, 7vmin, 80px); padding: 0 3vmin; }
 .tvh-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 60vmin), 1fr)); gap: 3vmin; }
 .tvh-card { text-align: left; border: max(2px, 0.3vmin) solid var(--edge); background: var(--card); color: var(--ink); border-radius: 4vmin; padding: 3vmin; display: flex; gap: 3vmin; align-items: center; transition: transform 0.12s; }
-.tvh-card .game-icon { width: clamp(64px, 14vmin, 180px); height: clamp(64px, 14vmin, 180px); border-radius: 3vmin; }
+.tvh-card .game-icon { width: clamp(80px, 14vmin, 180px); height: clamp(80px, 14vmin, 180px); border-radius: 3vmin; }
 .tvh-card .game-icon svg { width: 55%; height: 55%; }
 .tvh-card .game-icon img { width: 90%; height: 90%; }
 .tvh-name { font-family: var(--display); font-weight: 500; font-size: clamp(24px, 5vmin, 64px); line-height: 1.1; }

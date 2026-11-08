@@ -81,7 +81,7 @@
     users: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.8c1.9.7 3.1 2.4 3.5 5.2"/></svg>',
     // Ellen's drawings, one per game (8 Nov 2026), in place of the old line icons. Also in ellenial.app/drawings.
     game: ['pannben', 'imposter', 'charades', 'samething', 'hatt', 'wolf', 'packs'].reduce(function (o, g) {
-      o[g] = '<img src="art/game-' + g + '.webp" alt="" width="58" height="58" decoding="async">';
+      o[g] = '<img src="art/game-' + g + '.webp" alt="" width="74" height="74" decoding="async">';
       return o;
     }, {})
   };
