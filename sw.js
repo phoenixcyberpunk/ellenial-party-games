@@ -1,6 +1,6 @@
 /* Offline support: after the first visit, everything is played from this cache.
    Bump VERSION whenever any file changes, so phones pick up the new one. */
-var VERSION = 'party-v13';
+var VERSION = 'party-v14';
 var FILES = [
   './',
   'index.html',
@@ -23,7 +23,15 @@ var FILES = [
   'icons/icon-192.png',
   'icons/icon-512.png',
   'icons/icon-maskable-512.png',
-  'icons/apple-touch-icon.png'
+  'icons/apple-touch-icon.png',
+  'art/wolf.webp',
+  'art/sheep.webp',
+  'art/shepherd.webp',
+  'art/dog.webp',
+  'art/flock.webp',
+  'art/sheep-win.webp',
+  'art/wolves-win.webp',
+  'art/fleece.webp'
 ];
 
 self.addEventListener('install', function (e) {

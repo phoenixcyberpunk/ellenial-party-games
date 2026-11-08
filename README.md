@@ -19,6 +19,7 @@ Part of Ellenial: free tools made by people, for people. No account, no ads, not
   - No narrator: at night the phone goes to every living player in turn. Wolves pick a sheep and see their packmates' pick (the last wolf's pick counts), the Shepherd and Sheepdog do their thing, and plain sheep tap a name too, so nobody can tell who's who by how long they hold it. Night screens always use the dark palette.
   - Morning says who was taken (or that the Shepherd saved someone), then a gentle talk timer (1–10 min, default 3). The flock points on three and taps a name, or "Nobody today"; the player sent out has their role revealed. Sheep win when no wolves are left; wolves win when they're as many as everyone else.
   - Gentle wording on purpose: sheep are "taken" at night and "sent out of the meadow" by day, and players who are out stay and watch. Names are kept only while you play.
+  - Drawings by Ellen (no AI art) in `art/`: wolf, sheep, Shepherd, Sheepdog, the flock and both endings. Before a role is shown everyone sees the same plain fleece (the sheep's outline), so a glimpse gives nothing away.
   - The rules live at the top of `wolf.js` with no screen code, and `node tests/wolf.test.js` plays 20,000 random games against them.
 - Open it once, add it to your home screen, and it keeps working with no internet (a service worker caches every file).
 - Apart from Lapp i hatt: no server, no database. Names typed for a game are forgotten when it ends. Your own word packs are saved only in that phone's browser storage.
@@ -32,6 +33,7 @@ Part of Ellenial: free tools made by people, for people. No account, no ads, not
 | --- | --- |
 | `index.html`, `styles.css`, `app.js` | The app |
 | `hatt.js` | Lapp i hatt (the only part that talks to a server) |
+| `art/` | Ellen's drawings for Wolf in Sheep's Clothing (webp, transparent) |
 | `wolf.js` | Wolf in Sheep's Clothing (rules at the top, then the screens) |
 | `tests/wolf.test.js` | Plays thousands of random Wolf games to check the rules |
 | `supabase/lapp-i-hatt.sql` | Lapp i hatt's tables and functions |

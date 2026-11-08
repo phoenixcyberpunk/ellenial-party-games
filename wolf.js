@@ -109,6 +109,10 @@
     }
     function nm(i) { return W.G.names[i]; }
     function roleName(r) { return t('wolf.roles.' + r); }
+    // Ellen's own drawings (art/*.webp). Always next to text that says the same, so they're decorative.
+    function art(name, cls) { return '<img class="w-art ' + cls + '" src="art/' + name + '.webp" alt="" aria-hidden="true" decoding="async">'; }
+    // Before a role is shown everyone sees the same plain fleece (the sheep's outline), so a glimpse gives nothing away.
+    var FLEECE = '<span class="w-fleece" aria-hidden="true"></span>';
 
     // ---------- Day timer ----------
     function stopTimer() { if (W.timer) { clearInterval(W.timer); W.timer = null; } }
@@ -151,7 +155,7 @@
     function viewSetup() {
       var n = W.names.length, w = wolves(), mx = L.maxWolves(Math.max(n, L.MIN));
       var h = '<div class="bar">' + ep.backBtn('home') + '<h1 class="bar-title">' + esc(t('games.wolf.name')) + '</h1></div>' +
-        '<p class="help w-intro">' + esc(t('wolf.intro')) + '</p>';
+        art('flock', 'w-flock') + '<p class="help w-intro">' + esc(t('wolf.intro')) + '</p>';
 
       h += '<section class="group"><div class="w-row"><h2 class="label">' + esc(t('wolf.players')) + '</h2>' +
         '<span class="help">' + esc(t('wolf.playersCount', { n: n, min: L.MIN })) + '</span></div>';
@@ -196,7 +200,7 @@
 
     function roleCard(p) {
       var G = W.G, r = G.roles[p];
-      var h = '<div class="stage night w-role" aria-live="polite"><span class="stage-text">' + esc(t('wolf.youAre', { name: nm(p) })) + '</span>' +
+      var h = '<div class="stage w-role" aria-live="polite">' + art(r, 'w-lg') + '<span class="stage-text">' + esc(t('wolf.youAre', { name: nm(p) })) + '</span>' +
         '<span class="big-word">' + esc(roleName(r)) + '</span>';
       if (r === 'wolf') {
         var pack = G.roles.map(function (x, i) { return x === 'wolf' && i !== p ? nm(i) : null; }).filter(Boolean);
@@ -209,7 +213,7 @@
       var G = W.G, n = G.names.length;
       var h = bar() + '<div class="progress"><p>' + esc(t('wolf.dealing', { i: W.i + 1, n: n })) + '</p>' + dots(n, W.i) + '</div>';
       if (!W.open) {
-        h += '<button type="button" class="stage" data-act="wpeek">' + I.eye +
+        h += '<button type="button" class="stage" data-act="wpeek">' + FLEECE +
           '<span class="stage-text soft">' + esc(t('wolf.passTo')) + '</span>' +
           '<span class="big-word">' + esc(nm(W.i)) + '</span>' +
           '<span class="stage-text soft">' + esc(t('wolf.onlyLooks', { name: nm(W.i) })) + '</span>' +
@@ -241,36 +245,36 @@
       var G = W.G, nt = G.nt, p = nt.order[nt.i], r = G.roles[p], last = nt.i === nt.order.length - 1;
       var h = bar() + '<div class="w-top">' + phase(true) + '<span class="help">' + esc(t('wolf.turnOf', { i: nt.i + 1, n: nt.order.length })) + '</span></div>';
       if (!W.open) {
-        h += '<button type="button" class="stage" data-act="wpeek">' + I.eye +
+        h += '<button type="button" class="stage" data-act="wpeek">' + FLEECE +
           '<span class="stage-text soft">' + esc(t('wolf.passTo')) + '</span>' +
           '<span class="big-word">' + esc(nm(p)) + '</span>' +
           '<span class="stage-text soft">' + esc(t('wolf.nightLook', { name: nm(p) })) + '</span>' +
           '<span class="stage-title w-tap">' + esc(t('wolf.tapNight', { name: nm(p) })) + '</span></button>';
         return h;
       }
-      var list = L.choices(G, p), done = W.pick >= 0;
+      var list = L.choices(G, p), done = W.pick >= 0, head = art(r, 'w-sm');
       if (r === 'wolf') {
         var before = nt.picks.filter(function (x) { return x.by !== p; });
         var lastPick = before.length ? before[before.length - 1] : null;
-        h += '<div class="w-ask"><h1 class="h-title">' + esc(t('wolf.wolfAsk')) + '</h1><p class="help">' +
+        h += '<div class="w-ask">' + head + '<h1 class="h-title">' + esc(t('wolf.wolfAsk')) + '</h1><p class="help">' +
           esc(lastPick ? t('wolf.wolfPicked', { name: nm(lastPick.by), target: nm(lastPick.target) }) : t('wolf.wolfFirst')) + '</p></div>' +
           pickList(list, 'wpick', W.pick, function (i) { return lastPick && lastPick.target === i ? t('wolf.theirPick', { name: nm(lastPick.by) }) : ''; });
       } else if (r === 'shepherd') {
-        h += '<div class="w-ask"><h1 class="h-title">' + esc(t('wolf.shepAsk')) + '</h1><p class="help">' +
+        h += '<div class="w-ask">' + head + '<h1 class="h-title">' + esc(t('wolf.shepAsk')) + '</h1><p class="help">' +
           esc(G.lastSaved >= 0 && G.alive[G.lastSaved] ? t('wolf.shepNotAgain', { name: nm(G.lastSaved) }) : t('wolf.shepHelp')) + '</p></div>' +
           pickList(list, 'wpick', W.pick, function (i) { return i === p ? t('wolf.yourself') : ''; });
       } else if (r === 'dog') {
         if (W.sniffShown) {
           var isWolf = G.roles[W.pick] === 'wolf';
-          h += '<div class="stage night w-sniff" aria-live="polite"><span class="stage-text">' + esc(t('wolf.sniffed', { name: nm(W.pick) })) + '</span>' +
+          h += '<div class="stage night w-sniff" aria-live="polite">' + art(isWolf ? 'wolf' : 'sheep', 'w-lg') + '<span class="stage-text">' + esc(t('wolf.sniffed', { name: nm(W.pick) })) + '</span>' +
             '<span class="big-word">' + esc(isWolf ? t('wolf.isWolf') : t('wolf.notWolf')) + '</span>' +
             '<span class="stage-text">' + esc(t('wolf.sniffKeep')) + '</span></div>';
         } else {
-          h += '<div class="w-ask"><h1 class="h-title">' + esc(t('wolf.dogAsk')) + '</h1><p class="help">' + esc(t('wolf.dogHelp2')) + '</p></div>' +
+          h += '<div class="w-ask">' + head + '<h1 class="h-title">' + esc(t('wolf.dogAsk')) + '</h1><p class="help">' + esc(t('wolf.dogHelp2')) + '</p></div>' +
             pickList(list, 'wpick', W.pick);
         }
       } else {
-        h += '<div class="w-ask"><h1 class="h-title">' + esc(t('wolf.sheepAsk')) + '</h1><p class="help">' + esc(t('wolf.sheepHelp')) + '</p></div>' +
+        h += '<div class="w-ask">' + head + '<h1 class="h-title">' + esc(t('wolf.sheepAsk')) + '</h1><p class="help">' + esc(t('wolf.sheepHelp')) + '</p></div>' +
           pickList(list, 'wpick', W.pick);
       }
       h += '<div class="bottom">';
@@ -324,7 +328,7 @@
       var G = W.G, h = bar();
       if (W.sent >= 0) {
         var r = G.roles[W.sent];
-        h += '<div class="stage ' + (r === 'wolf' ? 'night' : 'yellow') + '" aria-live="polite"><span class="stage-text">' + esc(t('wolf.sentWas', { name: nm(W.sent) })) + '</span>' +
+        h += '<div class="stage ' + (r === 'wolf' ? 'night' : 'yellow') + '" aria-live="polite">' + art(r, 'w-lg') + '<span class="stage-text">' + esc(t('wolf.sentWas', { name: nm(W.sent) })) + '</span>' +
           '<span class="big-word">' + esc(roleName(r)) + '</span>' +
           '<span class="stage-text">' + esc(r === 'wolf' ? t('wolf.foundOne') : t('wolf.wasInnocent')) + '</span></div>';
       } else {
@@ -335,6 +339,12 @@
 
     function viewEnd() {
       var G = W.G, sheep = W.win === 'sheep';
+      if (!W.roles) {
+        return '<div class="w-end">' + art(sheep ? 'sheep-win' : 'wolves-win', 'w-hero') + '<h1 class="h-title w-win">' + esc(sheep ? t('wolf.sheepWin') : t('wolf.wolvesWin')) + '</h1>' +
+          (W.endNote ? '<p class="w-note">' + esc(W.endNote) + '</p>' : '') +
+          '<p class="help">' + esc(sheep ? t('wolf.sheepWinHow', { n: G.day }) : t('wolf.wolvesWinHow')) + '</p></div>' +
+          '<div class="bottom"><button type="button" class="btn btn-primary" data-act="wroles">' + esc(t('wolf.seeWho')) + '</button></div>';
+      }
       var h = '<div class="w-end"><h1 class="h-title w-win">' + esc(sheep ? t('wolf.sheepWin') : t('wolf.wolvesWin')) + '</h1>' +
         (W.endNote ? '<p class="w-note">' + esc(W.endNote) + '</p>' : '') +
         '<p class="help">' + esc(sheep ? t('wolf.sheepWinHow', { n: G.day }) : t('wolf.wolvesWinHow')) + '</p></div>' +
@@ -345,7 +355,7 @@
           if (r !== role) return;
           var o = G.out[i], status = o ? t(o.how === 'taken' ? 'wolf.takenNight' : 'wolf.sentDay', { n: o.when }) : t('wolf.stillIn');
           if (r === 'shepherd' && G.saves.length) status += ' · ' + t('wolf.saved', { names: G.saves.map(nm).join(', ') });
-          h += '<li><span class="w-who"><strong>' + esc(nm(i)) + '</strong><small>' + esc(status) + '</small></span>' +
+          h += '<li>' + art(r, 'w-xs') + '<span class="w-who"><strong>' + esc(nm(i)) + '</strong><small>' + esc(status) + '</small></span>' +
             '<span class="w-rp w-rp-' + r + '">' + esc(roleName(r)) + '</span></li>';
         });
       });
@@ -371,7 +381,7 @@
 
     // ---------- Flow ----------
     function show(stage) {
-      W.stage = stage; W.open = false; W.pick = -1; W.sniffShown = false; W.quit = false;
+      W.stage = stage; W.open = false; W.pick = -1; W.sniffShown = false; W.quit = false; W.roles = false;
       ep.keepAwake(stage !== 'setup' && stage !== 'end');
       ep.go({ name: 'wolf' });
     }
@@ -428,6 +438,7 @@
         show('reveal');
       },
       wafter: function () { if (W.win) show('end'); else night(); },
+      wroles: function () { W.roles = true; ep.render(); window.scrollTo(0, 0); },
       wagain: function () { deal(); },
       wnewp: function () { W.G = null; show('setup'); },
       wquit: function () { W.quit = true; ep.render(); },
