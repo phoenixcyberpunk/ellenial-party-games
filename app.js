@@ -241,7 +241,7 @@
 
   // ---------- Views ----------
   function viewTvHome() {
-    var h = '<div class="tvh"><div class="tvh-head"><div><h1>' + esc(t('appName')) + '</h1><p>' + esc(t('tv.tagline')) + '</p></div>' +
+    var h = '<div class="tvh"><div class="tvh-head"><div><h1><span class="ellenial-eyebrow">Ellenial</span>' + esc(t('appName')) + '</h1><p>' + esc(t('tv.tagline')) + '</p></div>' +
       '<button type="button" class="chip-btn tvh-lang" data-act="lang" aria-label="' + esc(t('langSwitchLabel')) + '" lang="' + (S.lang === 'sv' ? 'en' : 'sv') + '">' + esc(t('langSwitch')) + '</button></div>' +
       '<div class="tvh-cards">';
     TV_GAMES.forEach(function (g, i) {
@@ -273,7 +273,7 @@
   function viewHome() {
     if (TV) return viewTvHome();
     var draft = S.packs[S.lang] && S.packs[S.lang].draft;
-    var h = '<div class="home-head"><div><h1>' + esc(t('appName')) + '</h1><p>' + esc(t('tagline')) + '</p></div>' +
+    var h = '<div class="home-head"><div><h1><span class="ellenial-eyebrow">Ellenial</span>' + esc(t('appName')) + '</h1><p>' + esc(t('tagline')) + '</p></div>' +
       '<div class="head-btns"><button type="button" class="chip-btn" data-act="lang" aria-label="' + esc(t('langSwitchLabel')) + '" lang="' + (S.lang === 'sv' ? 'en' : 'sv') + '">' + esc(t('langSwitch')) + '</button>' + helpBtn() + '</div></div>';
     if (draft) h += '<p class="draft">' + esc(t('draftBanner')) + '</p>';
     h += '<div class="cards">';

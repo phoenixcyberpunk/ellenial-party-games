@@ -486,3 +486,7 @@ html.tv .theme-switch__btn { font-size: clamp(15px, 2.4vmin, 28px); min-height: 
 /* "?" help (shared ellenial-help.css does the rest) */
 .head-btns { display: flex; align-items: center; gap: 8px; flex: none; }
 .bar .eh-q { margin-left: auto; }
+
+/* "Ellenial" above the app's name (decided 8 Nov 2026): credit where credit is due, without making the name longer. */
+.ellenial-eyebrow { display: block; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; line-height: 14px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--muted); margin: 0 0 2px; }
+.tvh-head .ellenial-eyebrow { font-size: clamp(11px, 1.6vmin, 22px); line-height: 1.3; }
