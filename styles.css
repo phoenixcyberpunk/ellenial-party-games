@@ -111,6 +111,7 @@ h1.bar-title { font-size: 28px; margin: 0; }
 }
 .game-icon { width: 64px; height: 64px; border-radius: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 .game-icon svg { stroke: var(--ink); }
+.game-icon img { width: 58px; height: 58px; display: block; }
 .gi-pannben { background: var(--peri); }
 .gi-imposter { background: var(--lavender); }
 .gi-charades { background: var(--peri); }
@@ -302,6 +303,7 @@ html.tv #app { max-width: none; }
 .tvh-card { text-align: left; border: max(2px, 0.3vmin) solid var(--edge); background: var(--card); color: var(--ink); border-radius: 4vmin; padding: 3vmin; display: flex; gap: 3vmin; align-items: center; transition: transform 0.12s; }
 .tvh-card .game-icon { width: clamp(64px, 14vmin, 180px); height: clamp(64px, 14vmin, 180px); border-radius: 3vmin; }
 .tvh-card .game-icon svg { width: 55%; height: 55%; }
+.tvh-card .game-icon img { width: 90%; height: 90%; }
 .tvh-name { font-family: var(--display); font-weight: 500; font-size: clamp(24px, 5vmin, 64px); line-height: 1.1; }
 .tvh-desc { font-size: clamp(15px, 2.8vmin, 32px); color: var(--muted); line-height: 1.35; }
 .tvh-more { margin: 0; color: var(--muted); font-size: clamp(15px, 2.6vmin, 30px); }

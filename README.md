@@ -25,6 +25,7 @@ Part of Ellenial: free tools made by people, for people. No account, no ads, not
 - Apart from Lapp i hatt: no server, no database. Names typed for a game are forgotten when it ends. Your own word packs are saved only in that phone's browser storage.
 - The Ellenial look (final, 1 Nov 2026): the shared Ellenial palette in light and dark (Peach, Card, Lavender, Periwinkle, Indigo, Night), Fraunces for headings and DM Sans for text (SIL Open Font License), served from this site so no font service sees who plays.
 - Auto / Light / Dark switch on the home screen, the shared `ellenial-theme.js` from ellenial maps. Saved on this phone only. Add `?theme=light` or `?theme=dark` to test.
+- Each game's card on the home screen (and the TV home) shows Ellen's drawing for that game, in place of the old line icons; "Your packs" gets the make-your-own drawing. Drawn by hand, no AI art; the same files are in the shared set at ellenial.app/drawings.
 - Accessibility: text at least 4.5:1, buttons, inputs and outlines at least 3:1, and nothing relies on colour alone (✓ / ✕, = / ≠, ☀ Sun / ☾ Moon).
 
 ## Files
@@ -33,7 +34,7 @@ Part of Ellenial: free tools made by people, for people. No account, no ads, not
 | --- | --- |
 | `index.html`, `styles.css`, `app.js` | The app |
 | `hatt.js` | Lapp i hatt (the only part that talks to a server) |
-| `art/` | Ellen's drawings for Wolf in Sheep's Clothing (webp, transparent) |
+| `art/` | Ellen's drawings (webp, transparent): Wolf in Sheep's Clothing roles and endings, plus one per game on the home screen (`game-*.webp`, 8 Nov 2026; also at ellenial.app/drawings) |
 | `wolf.js` | Wolf in Sheep's Clothing (rules at the top, then the screens) |
 | `tests/wolf.test.js` | Plays thousands of random Wolf games to check the rules |
 | `supabase/lapp-i-hatt.sql` | Lapp i hatt's tables and functions |

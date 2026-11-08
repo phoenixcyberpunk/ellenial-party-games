@@ -1,6 +1,6 @@
 /* Offline support: after the first visit, everything is played from this cache.
    Bump VERSION whenever any file changes, so phones pick up the new one. */
-var VERSION = 'party-v15';
+var VERSION = 'party-v16';
 var FILES = [
   './',
   'index.html',
@@ -33,7 +33,14 @@ var FILES = [
   'art/flock.webp',
   'art/sheep-win.webp',
   'art/wolves-win.webp',
-  'art/fleece.webp'
+  'art/fleece.webp',
+  'art/game-pannben.webp',
+  'art/game-imposter.webp',
+  'art/game-charades.webp',
+  'art/game-samething.webp',
+  'art/game-hatt.webp',
+  'art/game-wolf.webp',
+  'art/game-packs.webp'
 ];
 
 self.addEventListener('install', function (e) {

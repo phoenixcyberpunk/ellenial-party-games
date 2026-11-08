@@ -79,15 +79,11 @@
     sun: '<svg class="w-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
     x: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>',
     users: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/><path d="M18 14.8c1.9.7 3.1 2.4 3.5 5.2"/></svg>',
-    game: {
-      pannben: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="14" r="7"/><rect x="8" y="2.5" width="8" height="6" rx="1.5"/><path d="M9.5 15.5c.8.8 1.6 1.1 2.5 1.1s1.7-.3 2.5-1.1"/></svg>',
-      imposter: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/><path d="M8.6 8.8a2 2 0 1 1 2.6 1.9c-.5.2-.7.6-.7 1.1"/><path d="M10.5 13.6h.01"/></svg>',
-      charades: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2"/><path d="M12 7.5v7"/><path d="M12 9.5l-5-3"/><path d="M12 9.5l4.5-4"/><path d="M12 14.5l-3.5 6"/><path d="M12 14.5l3.5 6"/></svg>',
-      samething: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3h6A2.5 2.5 0 0 1 14 5.5v3A2.5 2.5 0 0 1 11.5 11H7l-3 2.5V11a2.5 2.5 0 0 1-1-2z"/><path d="M21 13.5a2.5 2.5 0 0 0-2.5-2.5h-6a2.5 2.5 0 0 0-2.5 2.5v3a2.5 2.5 0 0 0 2.5 2.5H17l3 2.5V19a2.5 2.5 0 0 0 1-2z"/></svg>',
-      hatt: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 15V7.5C7 5.6 9.2 4 12 4s5 1.6 5 3.5V15"/><path d="M3 16.5c0-1 4-2 9-2s9 1 9 2-4 2.5-9 2.5-9-1.5-9-2.5z"/><path d="M7 12.5c1.5.6 3.2.9 5 .9s3.5-.3 5-.9"/><path d="M14.5 5.5l2-2.5h2.5l-2 3"/></svg>',
-      wolf: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 13.5A6.5 6.5 0 0 1 9 4.5a6.5 6.5 0 1 0 8.5 9z"/><path d="M15 3.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z"/><path d="M3 20.5c2.5-1.3 5.5-2 9-2s6.5.7 9 2"/></svg>',
-      packs: '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="12" height="15" rx="2"/><path d="M8 3h10a2 2 0 0 1 2 2v13"/><path d="M8 11h4"/><path d="M8 15h4"/></svg>'
-    }
+    // Ellen's drawings, one per game (8 Nov 2026), in place of the old line icons. Also in ellenial.app/drawings.
+    game: ['pannben', 'imposter', 'charades', 'samething', 'hatt', 'wolf', 'packs'].reduce(function (o, g) {
+      o[g] = '<img src="art/game-' + g + '.webp" alt="" width="58" height="58" decoding="async">';
+      return o;
+    }, {})
   };
 
   function backBtn(act, label) {
