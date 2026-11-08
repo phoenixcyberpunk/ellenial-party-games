@@ -250,7 +250,7 @@
         '<span class="game-text"><span class="tvh-name">' + esc(t('games.' + g + '.name')) + '</span>' +
         '<span class="tvh-desc">' + esc(t('games.' + g + '.desc')) + '</span></span></button>';
     });
-    return h + '</div><p class="tvh-more">' + esc(t('tv.more')) + '</p><div class="foot-wrap"><p class="tvh-foot">' + esc(t('footer')) + '</p>' + prefsRow() + '</div></div>';
+    return h + '</div><p class="tvh-more">' + esc(t('tv.more')) + '</p><div class="foot-wrap"><p class="tvh-foot">' + '<a href="https://ellenial.app/drawings">' + esc(t('footerDrawn')) + '</a>' + esc(t('footerRest')) + '</p>' + prefsRow() + '</div></div>';
   }
   // Auto / Light / Dark (shared Ellenial switch from ellenial maps). The slot is filled after each render.
   function prefsRow() {
@@ -290,7 +290,7 @@
       '<span class="game-icon gi-packs">' + I.game.packs + '</span>' +
       '<span class="game-text"><span class="game-name">' + esc(t('yourPacks')) + '</span>' +
       '<span class="game-desc">' + esc(t('yourPacksDesc')) + '</span></span></button>';
-    h += '</div><div class="foot-wrap"><p class="foot">' + esc(t('footer')) + '</p>' + prefsRow() + '</div>';
+    h += '</div><div class="foot-wrap"><p class="foot">' + '<a href="https://ellenial.app/drawings">' + esc(t('footerDrawn')) + '</a>' + esc(t('footerRest')) + '</p>' + prefsRow() + '</div>';
     return h;
   }
 

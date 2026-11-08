@@ -142,6 +142,8 @@
     "phoneTip": "On a TV? Open tv.ellenial.app in the TV's browser and play with the remote."
   },
   "footer": "Drawn and designed by me, coded with the help of AI. Free, no ads, nothing tracked.",
+  "footerDrawn": "Drawn",
+  "footerRest": " and designed by me, coded with the help of AI. Free, no ads, nothing tracked.",
   "theme": "Theme",
   "themeAuto": "Auto",
   "themeLight": "Light",
