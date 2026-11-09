@@ -250,9 +250,18 @@
         '<span class="game-text"><span class="tvh-name">' + esc(t('games.' + g + '.name')) + '</span>' +
         '<span class="tvh-desc">' + esc(t('games.' + g + '.desc')) + '</span></span></button>';
     });
-    return h + '</div><p class="tvh-more">' + esc(t('tv.more')) + '</p><div class="foot-wrap"><p class="tvh-foot">' + '<a href="https://ellenial.app/drawings">' + esc(t('footerDrawn')) + '</a>' + esc(t('footerRest')) + '</p>' + prefsRow() + '</div></div>';
+    return h + '</div><p class="tvh-more">' + esc(t('tv.more')) + '</p><div class="foot-wrap">' + prefsRow() + '</div></div>';
   }
   // Auto / Light / Dark (shared Ellenial switch from ellenial maps). The slot is filled after each render.
+  // The shared Ellenial footer (9 Nov 2026): same lines and order in every app. Not on the TV screen.
+  function sharedFoot() {
+    return '<footer class="ell-foot"><div class="ell-shared">' +
+      '<p><a href="https://ellenial.app/drawings">' + esc(t('footerDrawn')) + '</a>' + esc(t('footerRest')) + '</p>' +
+      '<p>' + esc(t('footPromise')) + '</p>' +
+      '<p>' + esc(t('footCounter')) + '</p>' +
+      '<p><a href="https://ellenial.app">' + esc(t('footTool')) + '</a> · <a href="https://github.com/phoenixcyberpunk/ellenial-party-games">' + esc(t('footSource')) + '</a> · <a href="https://ellenial.app/thanks">' + esc(t('footThanks')) + '</a></p>' +
+      '</div>' + prefsRow().replace('class="prefs"', 'class="prefs ell-controls"') + '</footer>';
+  }
   function prefsRow() {
     return window.EllenialTheme ? '<p class="prefs"><span class="prefs-label">' + esc(t('theme')) + ':</span><span data-theme-slot></span></p>' : '';
   }
@@ -290,7 +299,7 @@
       '<span class="game-icon gi-packs">' + I.game.packs + '</span>' +
       '<span class="game-text"><span class="game-name">' + esc(t('yourPacks')) + '</span>' +
       '<span class="game-desc">' + esc(t('yourPacksDesc')) + '</span></span></button>';
-    h += '</div><div class="foot-wrap"><p class="foot">' + '<a href="https://ellenial.app/drawings">' + esc(t('footerDrawn')) + '</a>' + esc(t('footerRest')) + '</p>' + prefsRow() + '</div>';
+    h += '</div><div class="foot-wrap">' + sharedFoot() + '</div>';
     return h;
   }
 
