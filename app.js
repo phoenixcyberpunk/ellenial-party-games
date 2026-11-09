@@ -1,5 +1,5 @@
 /* Ellenial Party games — family version.
-   Plain JavaScript, no build step, no server, no tracking.
+   Plain JavaScript, no build step, no tracking. One tiny server function: the daily visit +1 (api/visit.js).
    Everything a family types (names, own packs) stays on this phone. */
 (function () {
   'use strict';
@@ -886,4 +886,17 @@
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
   }
+
+  // Visit counter for Ellen's project board: one count per browser per day, nothing else.
+  // The date is remembered in this browser only; the server just adds 1 to today's number.
+  (function countVisit() {
+    try {
+      if (!(location.hostname === 'partygames.ellenial.app' || location.hostname === 'tv.ellenial.app')) return;
+      var day = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Stockholm' }).format(new Date());
+      if (localStorage.getItem('ellenial-party-games:counted') === day) return;
+      localStorage.setItem('ellenial-party-games:counted', day);
+      if (navigator.sendBeacon) navigator.sendBeacon('/api/visit');
+      else fetch('/api/visit', { method: 'POST', keepalive: true }).catch(function () {});
+    } catch (e) { /* private mode or storage off: skip counting rather than count every load */ }
+  })();
 })();

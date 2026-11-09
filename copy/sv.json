@@ -2,7 +2,7 @@
   "appName": "Sällskapsspel",
   "tagline": "Välj ett spel och kör. Inget konto, och alla spel utom ett funkar utan internet.",
   "langSwitch": "English",
-  "help": {"label": "Så funkar det", "title": "Så funkar det", "lead": "Tre steg, sen kör ni.", "done": "Uppfattat", "close": "Stäng", "steps": [{"title": "Välj ett spel", "text": "Flera spel för hela familjen. Alla utom Lapp i hatt funkar utan internet."}, {"title": "Ställ in", "text": "Välj spelare och hur svåra orden ska vara. Varje spel visar sina regler innan ni börjar."}, {"title": "Spela tillsammans", "text": "Skicka runt telefonen, håll den mot pannan, eller spela på var sin telefon i Lapp i hatt."}], "note": "Namn glöms bort när spelet slutar. Dina egna ordpaket sparas bara på den här telefonen."},
+  "help": {"label": "Så funkar det", "title": "Så funkar det", "lead": "Tre steg, sen kör ni.", "done": "Uppfattat", "close": "Stäng", "steps": [{"title": "Välj ett spel", "text": "Flera spel för hela familjen. Alla utom Lapp i hatt funkar utan internet."}, {"title": "Ställ in", "text": "Välj spelare och hur svåra orden ska vara. Varje spel visar sina regler innan ni börjar."}, {"title": "Spela tillsammans", "text": "Skicka runt telefonen, håll den mot pannan, eller spela på var sin telefon i Lapp i hatt."}], "note": "Namn glöms bort när spelet slutar. Dina egna ordpaket sparas bara på den här telefonen. Jag räknar bara hur många telefoner som öppnar Sällskapsspel varje dag, inget mer."},
   "langSwitchLabel": "Switch to English",
   "draftBanner": "Testversion: ordpaketen är utkast.",
   "back": "Tillbaka",
