@@ -56,6 +56,8 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }
+/* No double-tap zoom on fast taps (Correct/Pass, Guessed/Skip); pinch-zoom still works */
+html { touch-action: manipulation; }
 body {
   background: var(--bg);
   color: var(--ink);
@@ -153,7 +155,7 @@ section.group { display: flex; flex-direction: column; gap: 10px; }
 .names { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .names input, .text-input {
   width: 100%; min-width: 0; height: 44px; border: 2px solid var(--edge); border-radius: 12px; background: var(--card);
-  padding: 0 10px; font-weight: 700; font-size: 15px;
+  padding: 0 10px; font-weight: 700; font-size: 16px; /* 16px minimum: iPhone zooms in on smaller text fields */
 }
 .names input::placeholder, .text-input::placeholder { color: var(--muted); font-weight: 600; }
 .tip { background: var(--card); border-radius: 18px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; }
