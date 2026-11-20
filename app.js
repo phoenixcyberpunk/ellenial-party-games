@@ -4,6 +4,19 @@
 (function () {
   'use strict';
 
+  // ---------- No zoom (Ellen, 20 Nov 2026) ----------
+  // iPhone Safari ignores user-scalable=no, so block its pinch gestures here.
+  // Two-finger moves are cancelled; one-finger scrolling still works.
+  (function () {
+    var stop = function (e) { e.preventDefault(); };
+    ['gesturestart', 'gesturechange', 'gestureend'].forEach(function (t) {
+      document.addEventListener(t, stop, { passive: false });
+    });
+    document.addEventListener('touchmove', function (e) {
+      if (e.touches && e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
+  })();
+
   // ---------- Storage (only on this phone; fails quietly in private mode) ----------
   var store = {
     get: function (k, fallback) {

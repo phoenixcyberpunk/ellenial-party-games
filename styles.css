@@ -56,8 +56,8 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; height: 100%; }
-/* No double-tap zoom on fast taps (Correct/Pass, Guessed/Skip); pinch-zoom still works */
-html { touch-action: manipulation; }
+/* No zoom at all: no double-tap zoom on fast taps, no pinch-zoom (see also the viewport tag and the iPhone guard in app.js) */
+html { touch-action: pan-x pan-y; }
 body {
   background: var(--bg);
   color: var(--ink);
