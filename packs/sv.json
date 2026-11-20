@@ -9,8 +9,8 @@
       "games": ["imposter", "charades", "pannben"],
       "levels": {
         "easy": ["katt", "hund", "häst", "ko", "elefant", "pingvin", "giraff", "kanin", "groda", "uggla", "fisk", "anka", "lejon", "björn", "orm", "gris", "får", "get", "tiger", "apa", "zebra", "mus", "haj", "val", "höna", "delfin", "nyckelpiga", "snigel", "räv", "isbjörn", "bi", "mygga", "papegoja", "hamster", "marsvin", "ödla", "krabba", "gås", "kalkon", "tupp", "kyckling", "åsna", "varg", "hjort", "ren", "hare", "fladdermus", "kråka", "duva", "mås", "svan", "lamm", "kalv", "valp", "kattunge", "råtta", "leopard", "gepard", "sjöstjärna", "mask", "geting", "ponny"],
-        "medium": ["igelkott", "bläckfisk", "känguru", "ekorre", "manet", "hackspett", "flamingo", "krokodil", "älg", "säl", "fjäril", "spindel", "bäver", "mullvad", "sköldpadda", "noshörning", "flodhäst", "kamel", "struts", "gorilla", "panda", "koala", "hummer", "myra", "padda"],
-        "hard": ["kameleont", "näbbdjur", "narval", "sengångare", "myrslok", "axolotl", "eremitkräfta", "påfågel", "lämmel", "tapir", "jordsvin", "bältdjur", "surikat", "lodjur", "järv", "mård", "sjöhäst", "pelikan", "tukan", "skunk"]
+        "medium": ["igelkott", "bläckfisk", "känguru", "ekorre", "manet", "hackspett", "flamingo", "krokodil", "älg", "säl", "fjäril", "spindel", "bäver", "mullvad", "sköldpadda", "noshörning", "flodhäst", "kamel", "struts", "gorilla", "panda", "koala", "hummer", "myra", "padda", "orangutang", "schimpans", "valross", "tvättbjörn", "grävling", "utter", "vildsvin", "lama", "alpacka", "hyena", "jaguar", "puma", "örn", "falk", "kolibri", "gräshoppa", "skalbagge", "trollslända", "humla", "gädda", "lax", "kobra", "salamander", "rocka", "späckhuggare"],
+        "hard": ["kameleont", "näbbdjur", "narval", "sengångare", "myrslok", "axolotl", "eremitkräfta", "påfågel", "lämmel", "tapir", "jordsvin", "bältdjur", "surikat", "lodjur", "järv", "mård", "sjöhäst", "pelikan", "tukan", "skunk", "okapi", "lemur", "fennekräv", "piggsvin", "vombat", "dingo", "gnu", "antilop", "bisonoxe", "jak", "tarantel", "skorpion", "bönsyrsa", "tusenfoting", "piraya", "hammarhaj", "kondor", "albatross", "lunnefågel", "myskoxe"]
       }
     },
     {
@@ -19,8 +19,8 @@
       "games": ["imposter", "charades", "pannben"],
       "levels": {
         "easy": ["pannkaka", "banan", "pizza", "äpple", "glass", "bröd", "ost", "morot", "ägg", "soppa", "tårta", "popcorn", "taco", "mjölk", "jordgubbe", "apelsin", "päron", "druvor", "gurka", "tomat", "potatis", "pommes frites", "hamburgare", "korv", "choklad", "kaka", "juice", "vattenmelon", "citron", "majs"],
-        "medium": ["spaghetti", "köttbullar", "kanelbulle", "gröt", "korv med bröd", "sushi", "våffla", "smoothie", "isglass", "smörgås", "ärtsoppa", "prinsesstårta", "köttfärssås", "fiskpinnar", "pyttipanna", "falukorv", "knäckebröd", "risgrynsgröt", "muffins", "chokladboll", "kladdkaka", "lingonsylt", "räksmörgås", "nachos"],
-        "hard": ["fondue", "avokadotoast", "surdegsbröd", "lasagne", "kalops", "dumplings", "crème brûlée", "pressgurka", "risotto", "paella", "tiramisu", "wallenbergare", "Janssons frestelse", "toast skagen", "ramen", "falafel"]
+        "medium": ["spaghetti", "köttbullar", "kanelbulle", "gröt", "korv med bröd", "sushi", "våffla", "smoothie", "isglass", "smörgås", "ärtsoppa", "prinsesstårta", "köttfärssås", "fiskpinnar", "pyttipanna", "falukorv", "knäckebröd", "risgrynsgröt", "muffins", "chokladboll", "kladdkaka", "lingonsylt", "räksmörgås", "nachos", "fiskgratäng", "kycklingklubba", "potatismos", "pastasallad", "makaroner", "blodpudding", "raggmunk", "kroppkakor", "kåldolmar", "omelett", "pannbiff", "gulaschsoppa", "wok", "grillkorv", "äppelpaj", "bananasplit", "mazarin", "dammsugare", "mjukglass", "blåbärssoppa", "rabarberpaj", "burrito", "tunnbrödsrulle", "kebab"],
+        "hard": ["fondue", "avokadotoast", "surdegsbröd", "lasagne", "kalops", "dumplings", "crème brûlée", "pressgurka", "risotto", "paella", "tiramisu", "wallenbergare", "Janssons frestelse", "toast skagen", "ramen", "falafel", "gazpacho", "ratatouille", "carpaccio", "ceviche", "moussaka", "bouillabaisse", "sashimi", "tapas", "kimchi", "hummus", "guacamole", "pavlova", "croissant", "baklava", "sufflé", "rårakor"]
       }
     },
     {
@@ -29,8 +29,8 @@
       "games": ["imposter", "charades", "pannben"],
       "levels": {
         "easy": ["lärare", "läkare", "kock", "brandman", "polis", "bonde", "pilot", "tandläkare", "bagare", "busschaufför", "sjuksköterska", "målare", "sångare", "veterinär", "astronaut", "clown", "dansare", "skådespelare", "fiskare", "sophämtare", "lastbilschaufför", "kassör", "mekaniker", "glassförsäljare", "städare", "tågförare", "fotbollsspelare", "konstnär", "författare", "kapten"],
-        "medium": ["rörmokare", "frisör", "livräddare", "bibliotekarie", "brevbärare", "trollkarl", "fotograf", "trädgårdsmästare", "snickare", "domare", "servitör", "forskare", "elektriker", "programmerare", "journalist", "väktare", "guide", "skräddare", "barnmorska", "apotekare", "kranförare", "nyhetsuppläsare", "präst", "sotare"],
-        "hard": ["arkitekt", "arkeolog", "biodlare", "dirigent", "fyrvaktare", "dockspelare", "översättare", "djurskötare", "smed", "glasblåsare", "urmakare", "meteorolog", "stuntman", "sommelier", "hovslagare", "diplomat"]
+        "medium": ["rörmokare", "frisör", "livräddare", "bibliotekarie", "brevbärare", "trollkarl", "fotograf", "trädgårdsmästare", "snickare", "domare", "servitör", "forskare", "elektriker", "programmerare", "journalist", "väktare", "guide", "skräddare", "barnmorska", "apotekare", "kranförare", "nyhetsuppläsare", "präst", "sotare", "optiker", "sjöman", "murare", "taxichaufför", "fönsterputsare", "skogshuggare", "tränare", "pianist", "trummis", "DJ", "modell", "designer", "ingenjör", "advokat", "psykolog", "kirurg", "ambulansförare", "flygledare", "florist", "slaktare", "förskollärare", "receptionist", "konditor", "tatuerare"],
+        "hard": ["arkitekt", "arkeolog", "biodlare", "dirigent", "fyrvaktare", "dockspelare", "översättare", "djurskötare", "smed", "glasblåsare", "urmakare", "meteorolog", "stuntman", "sommelier", "hovslagare", "diplomat", "astronom", "paleontolog", "marinbiolog", "kartograf", "gruvarbetare", "hovmästare", "buktalare", "akrobat", "lindansare", "ståuppkomiker", "geolog", "pianostämmare", "bokbindare", "skulptör", "dykare", "fallskärmshoppare"]
       }
     },
     {
@@ -39,8 +39,8 @@
       "games": ["charades", "pannben"],
       "levels": {
         "easy": ["fotboll", "simma", "hopprep", "kurragömma", "cykla", "dansa", "åka skidor", "kull", "gunga", "rutschkana", "springa", "hoppa", "drake", "åka skridskor", "bollek", "snöbollskrig", "bygga snögubbe", "klättra i träd", "frisbee", "hoppa i vattenpölar", "bygga sandslott", "rida", "gymnastik", "brännboll", "hula hoop", "sparkcykel", "skateboard", "kasta boll", "fiska", "bada"],
-        "medium": ["tennis", "basket", "yoga", "hoppa hage", "jonglera", "ishockey", "bowling", "karate", "studsmatta", "åka pulka", "ro båt", "golf", "handboll", "innebandy", "boxning", "volleyboll", "badminton", "pingis", "paddla kanot", "dragkamp", "säckhoppning", "limbo", "schack", "minigolf"],
-        "hard": ["stavhopp", "konstsim", "curling", "fäktning", "surfa", "klättring", "konståkning", "orientering", "bågskytte", "tyngdlyftning", "brottning", "triathlon", "skidskytte", "segling", "kitesurfing", "parkour"]
+        "medium": ["tennis", "basket", "yoga", "hoppa hage", "jonglera", "ishockey", "bowling", "karate", "studsmatta", "åka pulka", "ro båt", "golf", "handboll", "innebandy", "boxning", "volleyboll", "badminton", "pingis", "paddla kanot", "dragkamp", "säckhoppning", "limbo", "schack", "minigolf", "bandy", "rugby", "judo", "taekwondo", "längdhopp", "höjdhopp", "kulstötning", "spjutkastning", "maraton", "rullskridskor", "snowboard", "vattenskidor", "dyka", "snorkla", "vattenpolo", "kubb", "boule", "krocket", "biljard", "dart", "frisbeegolf", "ägg-och-sked-lopp", "hinderbana", "armbrytning"],
+        "hard": ["stavhopp", "konstsim", "curling", "fäktning", "surfa", "klättring", "konståkning", "orientering", "bågskytte", "tyngdlyftning", "brottning", "triathlon", "skidskytte", "segling", "kitesurfing", "parkour", "bob", "skeleton", "backhoppning", "häcklöpning", "släggkastning", "diskus", "tiokamp", "sumo", "polo", "lacrosse", "cricket", "baseboll", "squash", "padel", "bergsbestigning", "fridykning"]
       }
     },
     {
@@ -49,8 +49,8 @@
       "games": ["imposter", "pannben"],
       "levels": {
         "easy": ["strand", "skola", "skog", "park", "kök", "djurpark", "bondgård", "affär", "bibliotek", "lekplats", "badrum", "trädgård", "sjukhus", "bio", "flygplats", "sovrum", "vardagsrum", "klassrum", "stall", "kyrka", "restaurang", "buss", "tåg", "båt", "hav", "sjö", "kafé", "fotbollsplan", "godisbutik", "tält"],
-        "medium": ["museum", "camping", "bageri", "tågstation", "slott", "fyr", "simhall", "ö", "berg", "hamn", "cirkus", "mataffär", "brandstation", "polisstation", "nöjespark", "akvarium", "gym", "teater", "bensinmack", "köpcentrum", "bro", "grotta", "vattenfall", "tunnelbana"],
-        "hard": ["vulkan", "rymdstation", "öken", "regnskog", "ubåt", "observatorium", "skärgård", "glaciär", "pyramid", "skyskrapa", "fabrik", "korallrev", "Antarktis", "oljeplattform", "vindkraftpark", "riksdagshuset"]
+        "medium": ["museum", "camping", "bageri", "tågstation", "slott", "fyr", "simhall", "ö", "berg", "hamn", "cirkus", "mataffär", "brandstation", "polisstation", "nöjespark", "akvarium", "gym", "teater", "bensinmack", "köpcentrum", "bro", "grotta", "vattenfall", "tunnelbana", "frisörsalong", "postkontor", "bank", "hotell", "stadion", "ishall", "kyrkogård", "torg", "marknad", "loppis", "vandrarhem", "stuga", "fjäll", "äng", "kanal", "parkeringshus", "hiss", "rulltrappa", "färja", "flygplan", "brygga", "skidbacke", "tvättstuga", "vind"],
+        "hard": ["vulkan", "rymdstation", "öken", "regnskog", "ubåt", "observatorium", "skärgård", "glaciär", "pyramid", "skyskrapa", "fabrik", "korallrev", "Antarktis", "oljeplattform", "vindkraftpark", "riksdagshuset", "katedral", "labyrint", "planetarium", "kloster", "ruin", "gejser", "kanjon", "savann", "tundra", "gruva", "vattenkraftverk", "månen", "Nordpolen", "Kinesiska muren", "Eiffeltornet", "Mount Everest"]
       }
     },
     {
@@ -58,9 +58,9 @@
       "name": "Svenska traditioner",
       "games": ["imposter", "charades", "pannben"],
       "levels": {
-        "easy": ["midsommarstång", "lussekatt", "julgran", "påskägg", "semla", "jultomte", "kräftor", "kanelbulle", "pepparkaka", "fika", "lucia", "julmust", "påskris", "tomteluva", "adventsljus", "julafton", "midsommar", "nyårsraketer", "snölykta", "skolavslutning"],
-        "medium": ["kräftskiva", "luciatåg", "valborgsbrasa", "små grodorna", "Kalle Anka på julafton", "påskkärring", "ostkaka", "julklappsrim", "dansa runt granen", "glögg", "sill", "jordgubbstårta", "studenten", "knäck", "adventskalender", "sju sorters kakor"],
-        "hard": ["allemansrätten", "Vasaloppet", "surströmming", "Mårtensgås", "sommarstuga", "Melodifestivalen", "midnattssol", "sportlov", "Nobelfesten", "julbord", "tjugondag Knut", "fettisdagen", "nationaldagen", "kanelbullens dag", "Allhelgona", "Gustav Adolfsbakelse"]
+        "easy": ["midsommarstång", "lussekatt", "julgran", "påskägg", "semla", "jultomte", "kräftor", "kanelbulle", "pepparkaka", "fika", "lucia", "julmust", "påskris", "tomteluva", "adventsljus", "julafton", "midsommar", "nyårsraketer", "snölykta", "skolavslutning", "julklapp", "pepparkakshus", "påskhare", "blomkrans", "julstjärna", "påskkyckling", "smörgåstårta", "sommarlov", "studentmössa", "luciakrona"],
+        "medium": ["kräftskiva", "luciatåg", "valborgsbrasa", "små grodorna", "Kalle Anka på julafton", "påskkärring", "ostkaka", "julklappsrim", "dansa runt granen", "glögg", "sill", "jordgubbstårta", "studenten", "knäck", "adventskalender", "sju sorters kakor", "julgransplundring", "dopp i grytan", "lutfisk", "julskinka", "prinskorv", "påskmust", "äggmålning", "nyårslöfte", "tolvslaget", "pepparkaksbak", "julkort", "skärtorsdag", "långfredag", "studentflak", "namnsdag", "äggjakt"],
+        "hard": ["allemansrätten", "Vasaloppet", "surströmming", "Mårtensgås", "sommarstuga", "Melodifestivalen", "midnattssol", "sportlov", "Nobelfesten", "julbord", "tjugondag Knut", "fettisdagen", "nationaldagen", "kanelbullens dag", "Allhelgona", "Gustav Adolfsbakelse", "Lilla julafton", "våffeldagen", "Almedalsveckan", "Göteborgsvarvet", "Medeltidsveckan", "dalahäst", "kurbits", "spettekaka", "ålagille", "Trettondagen", "Kyndelsmässodagen", "Marie bebådelsedag", "Polarpriset", "Allsång på Skansen", "Skansen", "Moraklocka"]
       }
     }
   ]
