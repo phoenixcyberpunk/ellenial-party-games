@@ -8,7 +8,7 @@
       "name": "Animals",
       "games": ["imposter", "charades", "pannben"],
       "levels": {
-        "easy": ["cat", "dog", "horse", "cow", "elephant", "penguin", "giraffe", "rabbit", "frog", "owl", "fish", "duck", "lion", "bear", "snake", "pig", "sheep", "goat", "tiger", "monkey", "zebra", "mouse", "shark", "whale", "chicken", "dolphin", "ladybug", "snail", "fox", "polar bear"],
+        "easy": ["cat", "dog", "horse", "cow", "elephant", "penguin", "giraffe", "rabbit", "frog", "owl", "fish", "duck", "lion", "bear", "snake", "pig", "sheep", "goat", "tiger", "monkey", "zebra", "mouse", "shark", "whale", "chicken", "dolphin", "ladybug", "snail", "fox", "polar bear", "bee", "mosquito", "parrot", "hamster", "guinea pig", "lizard", "crab", "goose", "turkey", "rooster", "chick", "donkey", "wolf", "deer", "reindeer", "hare", "bat", "crow", "pigeon", "seagull", "swan", "lamb", "calf", "puppy", "kitten", "rat", "leopard", "cheetah", "starfish", "worm", "wasp", "pony"],
         "medium": ["hedgehog", "octopus", "kangaroo", "squirrel", "jellyfish", "woodpecker", "flamingo", "crocodile", "moose", "seal", "butterfly", "spider", "beaver", "mole", "turtle", "rhino", "hippo", "camel", "ostrich", "gorilla", "panda", "koala", "lobster", "ant", "toad"],
         "hard": ["chameleon", "platypus", "narwhal", "sloth", "anteater", "axolotl", "hermit crab", "peacock", "lemming", "tapir", "aardvark", "armadillo", "meerkat", "lynx", "wolverine", "seahorse", "pelican", "toucan", "skunk", "marten"]
       }
@@ -18,9 +18,9 @@
       "name": "Food",
       "games": ["imposter", "charades", "pannben"],
       "levels": {
-        "easy": ["pancake", "banana", "pizza", "apple", "ice cream", "bread", "cheese", "carrot", "egg", "soup", "cake", "popcorn", "taco", "milk", "strawberry"],
-        "medium": ["spaghetti", "meatballs", "cinnamon bun", "porridge", "hot dog", "sushi", "waffle", "smoothie", "ice lolly", "sandwich", "pea soup", "birthday cake"],
-        "hard": ["fondue", "avocado toast", "sourdough bread", "lasagne", "ratatouille", "dumplings", "crème brûlée", "pickles"]
+        "easy": ["pancake", "banana", "pizza", "apple", "ice cream", "bread", "cheese", "carrot", "egg", "soup", "cake", "popcorn", "taco", "milk", "strawberry", "orange", "pear", "grapes", "cucumber", "tomato", "potato", "french fries", "burger", "sausage", "chocolate", "cookie", "juice", "watermelon", "lemon", "corn"],
+        "medium": ["spaghetti", "meatballs", "cinnamon bun", "porridge", "hot dog", "sushi", "waffle", "smoothie", "ice lolly", "sandwich", "pea soup", "birthday cake", "fish fingers", "chicken nuggets", "mashed potatoes", "crispbread", "rice pudding", "muffin", "brownie", "jam", "prawn sandwich", "nachos", "burrito", "pasta salad"],
+        "hard": ["fondue", "avocado toast", "sourdough bread", "lasagne", "ratatouille", "dumplings", "crème brûlée", "pickles", "risotto", "paella", "tiramisu", "gazpacho", "ramen", "falafel", "bao buns", "shepherd's pie"]
       }
     },
     {
@@ -28,9 +28,9 @@
       "name": "Jobs",
       "games": ["imposter", "charades", "pannben"],
       "levels": {
-        "easy": ["teacher", "doctor", "chef", "firefighter", "police officer", "farmer", "pilot", "dentist", "baker", "bus driver", "nurse", "painter", "singer", "vet", "astronaut"],
-        "medium": ["plumber", "hairdresser", "lifeguard", "librarian", "postal worker", "magician", "photographer", "gardener", "carpenter", "referee", "waiter", "scientist"],
-        "hard": ["architect", "archaeologist", "beekeeper", "conductor", "lighthouse keeper", "puppeteer", "translator", "zookeeper"]
+        "easy": ["teacher", "doctor", "chef", "firefighter", "police officer", "farmer", "pilot", "dentist", "baker", "bus driver", "nurse", "painter", "singer", "vet", "astronaut", "clown", "dancer", "actor", "fisherman", "garbage collector", "truck driver", "cashier", "mechanic", "ice cream seller", "cleaner", "train driver", "footballer", "artist", "writer", "captain"],
+        "medium": ["plumber", "hairdresser", "lifeguard", "librarian", "postal worker", "magician", "photographer", "gardener", "carpenter", "referee", "waiter", "scientist", "electrician", "programmer", "journalist", "security guard", "tour guide", "tailor", "midwife", "pharmacist", "crane operator", "news reader", "priest", "chimney sweep"],
+        "hard": ["architect", "archaeologist", "beekeeper", "conductor", "lighthouse keeper", "puppeteer", "translator", "zookeeper", "blacksmith", "glassblower", "watchmaker", "meteorologist", "stunt performer", "sommelier", "farrier", "diplomat"]
       }
     },
     {
@@ -38,9 +38,9 @@
       "name": "Sports and play",
       "games": ["charades", "pannben"],
       "levels": {
-        "easy": ["football", "swimming", "skipping rope", "hide and seek", "cycling", "dancing", "skiing", "tag", "swing", "slide", "running", "jumping", "kite", "skating", "ball game"],
-        "medium": ["tennis", "basketball", "yoga", "hopscotch", "juggling", "ice hockey", "bowling", "karate", "trampoline", "sledging", "rowing", "golf"],
-        "hard": ["pole vault", "artistic swimming", "curling", "fencing", "surfing", "rock climbing", "figure skating", "orienteering"]
+        "easy": ["football", "swimming", "skipping rope", "hide and seek", "cycling", "dancing", "skiing", "tag", "swing", "slide", "running", "jumping", "kite", "skating", "ball game", "snowball fight", "building a snowman", "climbing trees", "frisbee", "jumping in puddles", "building sandcastles", "horse riding", "gymnastics", "rounders", "hula hoop", "scooter", "skateboarding", "throwing a ball", "fishing", "splashing in the sea"],
+        "medium": ["tennis", "basketball", "yoga", "hopscotch", "juggling", "ice hockey", "bowling", "karate", "trampoline", "sledging", "rowing", "golf", "handball", "floorball", "boxing", "volleyball", "badminton", "table tennis", "canoeing", "tug of war", "sack race", "limbo", "chess", "mini golf"],
+        "hard": ["pole vault", "artistic swimming", "curling", "fencing", "surfing", "rock climbing", "figure skating", "orienteering", "archery", "weightlifting", "wrestling", "triathlon", "biathlon", "sailing", "kitesurfing", "parkour"]
       }
     },
     {
@@ -48,9 +48,9 @@
       "name": "Places",
       "games": ["imposter", "pannben"],
       "levels": {
-        "easy": ["beach", "school", "forest", "park", "kitchen", "zoo", "farm", "shop", "library", "playground", "bathroom", "garden", "hospital", "cinema", "airport"],
-        "medium": ["museum", "campsite", "bakery", "train station", "castle", "lighthouse", "swimming pool", "island", "mountain", "harbour", "circus", "supermarket"],
-        "hard": ["volcano", "space station", "desert", "rainforest", "submarine", "observatory", "archipelago", "glacier"]
+        "easy": ["beach", "school", "forest", "park", "kitchen", "zoo", "farm", "shop", "library", "playground", "bathroom", "garden", "hospital", "cinema", "airport", "bedroom", "living room", "classroom", "stable", "church", "restaurant", "bus", "train", "boat", "sea", "lake", "café", "football pitch", "sweet shop", "tent"],
+        "medium": ["museum", "campsite", "bakery", "train station", "castle", "lighthouse", "swimming pool", "island", "mountain", "harbour", "circus", "supermarket", "fire station", "police station", "theme park", "aquarium", "gym", "theatre", "petrol station", "shopping centre", "bridge", "cave", "waterfall", "underground"],
+        "hard": ["volcano", "space station", "desert", "rainforest", "submarine", "observatory", "archipelago", "glacier", "pyramid", "skyscraper", "factory", "coral reef", "Antarctica", "oil rig", "wind farm", "parliament"]
       }
     }
   ]
