@@ -295,7 +295,10 @@
   function viewHome() {
     if (TV) return viewTvHome();
     var draft = S.packs[S.lang] && S.packs[S.lang].draft;
-    var h = '<div class="home-head"><div><div class="brand-row"><img class="brand-icon" src="icons/icon-192.png" alt="" width="44" height="44"><h1><span class="ellenial-eyebrow">Ellenial</span>' + esc(t('appName')) + '</h1></div><p>' + esc(t('tagline')) + '</p></div>' +
+    // Icon, eyebrow and buttons share the top row; the name gets the full width below,
+    // so a long name (Sällskapsspel) never pushes the "?" off the screen (20 Nov 2026).
+    var h = '<div class="home-head"><div class="brand-row"><img class="brand-icon" src="icons/icon-192.png" alt="" width="44" height="44"><span class="ellenial-eyebrow">Ellenial</span></div>' +
+      '<h1>' + esc(t('appName')) + '</h1><p>' + esc(t('tagline')) + '</p>' +
       '<div class="head-btns"><button type="button" class="chip-btn" data-act="lang" aria-label="' + esc(t('langSwitchLabel')) + '" lang="' + (S.lang === 'sv' ? 'en' : 'sv') + '">' + esc(t('langSwitch')) + '</button>' + helpBtn() + '</div></div>';
     if (draft) h += '<p class="draft">' + esc(t('draftBanner')) + '</p>';
     h += '<div class="cards">';

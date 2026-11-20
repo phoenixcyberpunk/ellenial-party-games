@@ -98,9 +98,13 @@ h1.bar-title { font-size: 28px; margin: 0; }
 .spacer { width: 44px; flex-shrink: 0; }
 
 /* Home */
-.home-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-.home-head h1 { margin: 0; font-family: var(--display); font-weight: 500; font-size: 34px; line-height: 1.1; }
-.home-head p { margin: 6px 0 0; color: var(--muted); }
+/* Top row: icon + eyebrow left, language and "?" right. Name and tagline span the full width below. */
+.home-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "brand btns" "name name" "tag tag"; align-items: center; column-gap: 12px; }
+.home-head .brand-row { grid-area: brand; min-width: 0; }
+.home-head .head-btns { grid-area: btns; }
+.home-head h1 { grid-area: name; margin: 10px 0 0; font-family: var(--display); font-weight: 500; font-size: 34px; line-height: 1.1; overflow-wrap: anywhere; }
+.home-head p { grid-area: tag; margin: 6px 0 0; color: var(--muted); }
+.home-head .ellenial-eyebrow { margin: 0; }
 .chip-btn {
   border: 2px solid var(--edge); background: var(--card); color: var(--ink);
   font-weight: 700; font-size: 15px; min-height: 44px; padding: 0 14px; border-radius: 999px; flex-shrink: 0;
