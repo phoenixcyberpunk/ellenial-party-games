@@ -8,9 +8,9 @@
       "name": "Animals",
       "games": ["imposter", "charades", "pannben"],
       "levels": {
-        "easy": ["cat", "dog", "horse", "cow", "elephant", "penguin", "giraffe", "rabbit", "frog", "owl", "fish", "duck", "lion", "bear", "snake"],
-        "medium": ["hedgehog", "octopus", "kangaroo", "squirrel", "jellyfish", "woodpecker", "flamingo", "crocodile", "moose", "seal", "butterfly", "spider"],
-        "hard": ["chameleon", "platypus", "narwhal", "sloth", "anteater", "axolotl", "hermit crab", "peacock"]
+        "easy": ["cat", "dog", "horse", "cow", "elephant", "penguin", "giraffe", "rabbit", "frog", "owl", "fish", "duck", "lion", "bear", "snake", "pig", "sheep", "goat", "tiger", "monkey", "zebra", "mouse", "shark", "whale", "chicken", "dolphin", "ladybug", "snail", "fox", "polar bear"],
+        "medium": ["hedgehog", "octopus", "kangaroo", "squirrel", "jellyfish", "woodpecker", "flamingo", "crocodile", "moose", "seal", "butterfly", "spider", "beaver", "mole", "turtle", "rhino", "hippo", "camel", "ostrich", "gorilla", "panda", "koala", "lobster", "ant", "toad"],
+        "hard": ["chameleon", "platypus", "narwhal", "sloth", "anteater", "axolotl", "hermit crab", "peacock", "lemming", "tapir", "aardvark", "armadillo", "meerkat", "lynx", "wolverine", "seahorse", "pelican", "toucan", "skunk", "marten"]
       }
     },
     {

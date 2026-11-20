@@ -8,9 +8,9 @@
       "name": "Djur",
       "games": ["imposter", "charades", "pannben"],
       "levels": {
-        "easy": ["katt", "hund", "häst", "ko", "elefant", "pingvin", "giraff", "kanin", "groda", "uggla", "fisk", "anka", "lejon", "björn", "orm"],
-        "medium": ["igelkott", "bläckfisk", "känguru", "ekorre", "manet", "hackspett", "flamingo", "krokodil", "älg", "säl", "fjäril", "spindel"],
-        "hard": ["kameleont", "näbbdjur", "narval", "sengångare", "myrslok", "axolotl", "eremitkräfta", "påfågel"]
+        "easy": ["katt", "hund", "häst", "ko", "elefant", "pingvin", "giraff", "kanin", "groda", "uggla", "fisk", "anka", "lejon", "björn", "orm", "gris", "får", "get", "tiger", "apa", "zebra", "mus", "haj", "val", "höna", "delfin", "nyckelpiga", "snigel", "räv", "isbjörn"],
+        "medium": ["igelkott", "bläckfisk", "känguru", "ekorre", "manet", "hackspett", "flamingo", "krokodil", "älg", "säl", "fjäril", "spindel", "bäver", "mullvad", "sköldpadda", "noshörning", "flodhäst", "kamel", "struts", "gorilla", "panda", "koala", "hummer", "myra", "padda"],
+        "hard": ["kameleont", "näbbdjur", "narval", "sengångare", "myrslok", "axolotl", "eremitkräfta", "påfågel", "lämmel", "tapir", "jordsvin", "bältdjur", "surikat", "lodjur", "järv", "mård", "sjöhäst", "pelikan", "tukan", "skunk"]
       }
     },
     {
