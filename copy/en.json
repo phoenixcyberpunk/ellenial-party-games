@@ -83,6 +83,7 @@
     "correct": "Correct!",
     "passed": "Pass"
   },
+  "outOfWords": "Out of words!",
   "timesUp": "Time's up!",
   "groupSoFar": "Your group so far",
   "wordsTogether": "words guessed together",

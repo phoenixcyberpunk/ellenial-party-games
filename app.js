@@ -38,7 +38,6 @@
     own: store.get('ep.ownPacks', []),
     view: { name: 'home' },
     setup: { game: null, packId: 'animals', ownId: null, level: 'easy', seconds: 60, players: 4, names: [] },
-    deck: [], deckKey: '',
     imp: null,
     round: null,
     groupTotal: 0,
@@ -121,17 +120,43 @@
     });
     return out;
   }
-  function draw() {
+  // Words already shown on this phone, per word list (lang|game|pack|own pack|level), so nothing
+  // comes back until the whole list has been used, across turns, reloads and "Next turn" (20 Nov 2026:
+  // PANNBEN repeated animals in one round, because Animals/Easy has 15 words and the old deck reshuffled
+  // as soon as it ran out, even mid-turn).
+  function poolKey() { var st = S.setup; return [S.lang, st.game, st.packId, st.ownId, st.level].join('|'); }
+  function seenAll() { var v = store.get('ep.seen', {}); return v && typeof v === 'object' && !Array.isArray(v) ? v : {}; }
+  // The other levels of the same pack(s): borrowed only when one turn alone has used up the whole list.
+  function extraPool() {
     var st = S.setup;
-    var key = [S.lang, st.game, st.packId, st.ownId, st.level].join('|');
-    if (key !== S.deckKey || S.deck.length === 0) {
-      var last = S.lastWord;
-      S.deck = shuffle(wordPool());
-      // Avoid showing the same word twice in a row after reshuffling.
-      if (S.deck.length > 1 && last && S.deck[S.deck.length - 1].word === last) S.deck.unshift(S.deck.pop());
-      S.deckKey = key;
+    if (st.ownId) return [];
+    var list = st.packId === 'mix' ? packsFor(st.game) : builtIn().filter(function (p) { return p.id === st.packId; });
+    var out = [];
+    ['easy', 'medium', 'hard'].forEach(function (lv) {
+      if (lv === st.level) return;
+      list.forEach(function (p) { (p.levels[lv] || []).forEach(function (w) { out.push({ word: w, cat: p.name }); }); });
+    });
+    return out;
+  }
+  // Returns null when this turn has shown every word there is (the turn then ends, see nextWord).
+  function draw() {
+    var key = poolKey(), all = seenAll();
+    var seen = Array.isArray(all[key]) ? all[key] : [];
+    var r = S.round;
+    var turn = r && r.game === S.setup.game && r.shown ? r.shown : null;
+    function notInTurn(w) { return !turn || turn.indexOf(w.word) < 0; }
+    var pool = wordPool();
+    var fresh = pool.filter(function (w) { return seen.indexOf(w.word) < 0 && notInTurn(w); });
+    if (!fresh.length) {
+      // Every word has been shown on this phone: start over, but never with this turn's words or the last one.
+      seen = [];
+      fresh = pool.filter(function (w) { return notInTurn(w) && w.word !== S.lastWord; });
     }
-    var item = S.deck.pop() || { word: '—', cat: '' };
+    if (!fresh.length && turn) fresh = extraPool().filter(notInTurn);
+    if (!fresh.length) return null;
+    var item = fresh[Math.floor(Math.random() * fresh.length)];
+    seen.push(item.word); all[key] = seen; store.set('ep.seen', all);
+    if (turn) turn.push(item.word);
     S.lastWord = item.word;
     return item;
   }
@@ -381,7 +406,7 @@
     return n || t('setup.playerN', { n: i + 1 });
   }
   function impNew() {
-    var n = S.setup.players, item = draw();
+    var n = S.setup.players, item = draw() || { word: '—', cat: '' };
     S.imp = { n: n, word: item.word, cat: item.cat, imposter: Math.floor(Math.random() * n), starter: Math.floor(Math.random() * n), i: 0, open: false, stage: 'pass' };
   }
   function viewImposter() {
@@ -428,13 +453,19 @@
 
   // ----- Charades & PANNBEN shared -----
   function newRound(game) {
-    S.round = { game: game, stage: 'ready', seconds: S.setup.seconds, left: S.setup.seconds, turn: 0, item: null, lockUntil: 0, flash: '' };
+    S.round = { game: game, stage: 'ready', seconds: S.setup.seconds, left: S.setup.seconds, turn: 0, item: null, lockUntil: 0, flash: '', shown: [] };
   }
-  function nextWord() { S.round.item = draw(); S.round.lockUntil = Date.now() + 700; }
+  function nextWord() {
+    var r = S.round, item = draw();
+    if (!item) { // this turn has used every word in the list: end it rather than repeat one
+      r.stage = 'end'; r.outOfWords = true; endRound(); go({ name: r.game }); return false;
+    }
+    r.item = item; r.lockUntil = Date.now() + 700; return true;
+  }
   function viewTimesUp() {
     var g = S.round.game;
     return '<div class="bar center">' + backBtn('setup') + '<span class="bar-title">' + esc(t('games.' + g + '.name')) + '</span><span class="spacer"></span></div>' +
-      '<div class="stage yellow" aria-live="polite"><span class="stage-title">' + esc(t('timesUp')) + '</span>' +
+      '<div class="stage yellow" aria-live="polite"><span class="stage-title">' + esc(t(S.round.outOfWords ? 'outOfWords' : 'timesUp')) + '</span>' +
       // Charades starts without scores (decided 29 Oct); PANNBEN shows the group's running total.
       (g === 'charades'
         ? '<span class="stage-text" style="font-weight:700">' + esc(t('charades.wellActed')) + '</span>'
@@ -504,7 +535,7 @@
     render();
     setTimeout(function () {
       if (S.round !== r || r.stage !== 'play') return;
-      r.flash = ''; nextWord(); render();
+      r.flash = ''; if (nextWord()) render();
     }, 650);
   }
 
@@ -801,12 +832,12 @@
     impagain: function () { impNew(); go({ name: 'imposter' }); },
     // Charades
     chgo: function () {
-      var r = S.round; r.stage = 'play'; r.left = r.seconds; nextWord(); keepAwake(true);
+      var r = S.round; r.stage = 'play'; r.left = r.seconds; if (!nextWord()) return; keepAwake(true);
       render();
       startTimer(function () { r.stage = 'end'; endRound(); go({ name: 'charades' }); });
     },
-    chgot: function () { if (Date.now() < S.round.lockUntil) return; buzz(40); nextWord(); render(); },
-    chskip: function () { if (Date.now() < S.round.lockUntil) return; nextWord(); render(); },
+    chgot: function () { if (Date.now() < S.round.lockUntil) return; buzz(40); if (nextWord()) render(); },
+    chskip: function () { if (Date.now() < S.round.lockUntil) return; if (nextWord()) render(); },
     nextturn: function () { var g = S.round.game; newRound(g); go({ name: g }); },
     stopround: toSetup,
     // PANNBEN
@@ -822,7 +853,7 @@
           r.count--;
           if (r.count > 0) { render(); return; }
           clearInterval(cd);
-          r.stage = 'play'; r.left = r.seconds; nextWord(); render();
+          r.stage = 'play'; r.left = r.seconds; if (!nextWord()) return; render();
           startTimer(function () { r.stage = 'end'; endRound(); go({ name: 'pannben' }); });
         }, 900);
       });
