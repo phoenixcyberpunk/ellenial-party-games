@@ -150,6 +150,8 @@
   "footTool": "An Ellenial tool",
   "footSource": "Source",
   "footThanks": "Thanks",
+  "footFeedback": "Feedback",
+  "footFeedbackUrl": "https://ellenial.app/feedback?app=party-games",
   "theme": "Theme",
   "themeAuto": "Auto",
   "themeLight": "Light",

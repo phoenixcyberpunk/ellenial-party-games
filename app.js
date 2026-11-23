@@ -297,7 +297,7 @@
       '<p><a href="https://ellenial.app/drawings">' + esc(t('footerDrawn')) + '</a>' + esc(t('footerRest')) + '</p>' +
       '<p>' + esc(t('footPromise')) + '</p>' +
       '<p>' + esc(t('footCounter')) + '</p>' +
-      '<p><a href="https://ellenial.app">' + esc(t('footTool')) + '</a> · <a href="https://github.com/phoenixcyberpunk/ellenial-party-games">' + esc(t('footSource')) + '</a> · <a href="https://ellenial.app/thanks">' + esc(t('footThanks')) + '</a></p>' +
+      '<p><a href="https://ellenial.app">' + esc(t('footTool')) + '</a> · <a href="https://github.com/phoenixcyberpunk/ellenial-party-games">' + esc(t('footSource')) + '</a> · <a href="https://ellenial.app/thanks">' + esc(t('footThanks')) + '</a> · <a href="' + esc(t('footFeedbackUrl')) + '">' + esc(t('footFeedback')) + '</a></p>' +
       '</div>' + prefsRow().replace('class="prefs"', 'class="prefs ell-controls"') + '</footer>';
   }
   function prefsRow() {
